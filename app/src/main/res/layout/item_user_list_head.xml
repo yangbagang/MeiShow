@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_user_wall"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_512"
+        android:background="@mipmap/ic_info_bg">
+
+        <com.ybg.app.meishow.view.CircleImageView
+            android:id="@+id/iv_user_logo"
+            android:layout_width="@dimen/px_180"
+            android:layout_height="@dimen/px_180"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px_78"
+            android:src="@mipmap/default_avatar"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="@dimen/px_4" />
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_user_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px_22"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/px_24" />
+
+        <RelativeLayout
+            android:id="@+id/rl_user_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_nickname"
+            android:layout_marginTop="@dimen/px_14"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_level_star" />
+
+            <TextView
+                android:id="@+id/tv_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px_8"
+                android:layout_toRightOf="@id/iv_level"
+                android:gravity="center_vertical"
+                android:text="LV1"
+                android:textColor="@color/color_7dcf2c"
+                android:textSize="@dimen/px_24" />
+
+            <TextView
+                android:id="@+id/tv_level_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px_8"
+                android:layout_toRightOf="@id/tv_level"
+                android:text="闪亮新星"
+                android:textColor="#fffc0b"
+                android:textSize="@dimen/px_24" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_sign_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_user_level"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px_48"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/px_24" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_88"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/px_28"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="美力值:"
+                android:textColor="@color/color_f84f21"
+                android:textSize="@dimen/px_24" />
+
+            <TextView
+                android:id="@+id/tv_meilizhi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_16"
+                android:text="0"
+                android:textColor="@color/color_f84f21"
+                android:textSize="@dimen/px_24" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关注:"
+                android:textColor="#545866"
+                android:textSize="@dimen/px_24" />
+
+            <TextView
+                android:id="@+id/tv_care"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_16"
+                android:text="0"
+                android:textColor="#545866"
+                android:textSize="@dimen/px_24" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/px_28"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="粉丝:"
+                android:textColor="#545866"
+                android:textSize="@dimen/px_24" />
+
+            <TextView
+                android:id="@+id/tv_fans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_16"
+                android:text="0"
+                android:textColor="#545866"
+                android:textSize="@dimen/px_24" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ecedf3"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/px_10"
+        android:paddingTop="@dimen/px_10">
+
+        <RelativeLayout
+            android:id="@+id/rl_mi_ai_first"
+            android:layout_width="@dimen/px_74"
+            android:layout_height="@dimen/px_74"
+            android:layout_marginLeft="@dimen/px_24">
+
+            <com.ybg.app.meishow.view.CircleImageView
+                android:id="@+id/iv_mi_ai_first"
+                android:layout_width="@dimen/px_72"
+                android:layout_height="@dimen/px_72"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/default_avatar" />
+
+            <ImageView
+                android:layout_width="@dimen/px_74"
+                android:layout_height="@dimen/px_40"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/mi_ai_1"
+                android:scaleType="fitXY"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_mi_ai_second"
+            android:layout_width="@dimen/px_74"
+            android:layout_height="@dimen/px_74"
+            android:layout_marginLeft="@dimen/px_26">
+
+            <com.ybg.app.meishow.view.CircleImageView
+                android:id="@+id/iv_mi_ai_second"
+                android:layout_width="@dimen/px_72"
+                android:layout_height="@dimen/px_72"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/default_avatar" />
+
+            <ImageView
+                android:layout_width="@dimen/px_74"
+                android:layout_height="@dimen/px_40"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/mi_ai_2"
+                android:scaleType="fitXY"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_mi_ai_third"
+            android:layout_width="@dimen/px_74"
+            android:layout_height="@dimen/px_74"
+            android:layout_marginLeft="@dimen/px_26">
+
+            <com.ybg.app.meishow.view.CircleImageView
+                android:id="@+id/iv_mi_ai_third"
+                android:layout_width="@dimen/px_72"
+                android:layout_height="@dimen/px_72"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/default_avatar" />
+
+            <ImageView
+                android:layout_width="@dimen/px_74"
+                android:layout_height="@dimen/px_40"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/mi_ai_3"
+                android:scaleType="fitXY"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_go_mi_ai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/px_22"
+            android:text="我的密爱"
+            android:textColor="#545866"
+            android:textSize="@dimen/px_30" />
+
+        <ImageView
+            android:id="@+id/iv_gray_arrpw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/px_26"
+            android:src="@mipmap/ic_gray_right_arrow" />
+
+    </LinearLayout>
+
+</LinearLayout>

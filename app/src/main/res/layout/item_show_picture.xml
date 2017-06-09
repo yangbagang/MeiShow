@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <include
+        android:id="@+id/include_line"
+        layout="@layout/item_show_h_line"/>
+    <!-- 短视频 -->
+    <RelativeLayout
+        android:id="@+id/rl_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include_line"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_video_cover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/default_avatar"/>
+
+        <ImageView
+            android:id="@+id/iv_video_play"
+            android:layout_width="@dimen/px_120"
+            android:layout_height="@dimen/px_120"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/ic_play"/>
+    </RelativeLayout>
+    <!-- 图片 -->
+    <ImageView
+        android:id="@+id/iv_picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include_line"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        android:src="@mipmap/default_avatar">
+    </ImageView>
+
+    <LinearLayout
+        android:id="@+id/ll_photo_live_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px_28"
+        android:layout_marginTop="@dimen/px_38"
+        android:background="@drawable/shape_gray_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/px_8"
+        android:paddingLeft="@dimen/px_18"
+        android:paddingRight="@dimen/px_18"
+        android:paddingTop="@dimen/px_8"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/iv_photo_live_flag"
+            android:layout_width="@dimen/px_40"
+            android:layout_height="@dimen/px_30"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_entry_photo_logo"/>
+
+        <TextView
+            android:id="@+id/tv_photo_live_flag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/px_8"
+            android:text="1"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</RelativeLayout>

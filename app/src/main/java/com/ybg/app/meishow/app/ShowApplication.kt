@@ -7,6 +7,8 @@ import com.ybg.app.base.app.YbgAPP
  */
 class ShowApplication : YbgAPP() {
 
+    var ymCode = ""
+
     override fun onCreate() {
         super.onCreate()
 

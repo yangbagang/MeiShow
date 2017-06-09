@@ -1,15 +1,194 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="com.ybg.app.meishow">
 
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.write_contacts" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- SD卡读取权限，用户写入离线定位数据 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 允许应用读取低级别的系统日志文件 -->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS." />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
     <application
+        android:name=".app.ShowApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="PGYER_APPID"
+            android:value="3ed46f14f461bd904ec7b65d0741ca14" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 选择图片界面，由于发布或者选择头像等 -->
+        <activity
+            android:name=".view.gallery.MultiImageSelectorActivity"
+            android:screenOrientation="portrait" />
+        <!-- 拍照，新建悦秀过程之一。 -->
+        <activity
+            android:name=".activity.photo.CameraActivity"
+            android:screenOrientation="portrait" />
+        <!-- 图片处理、加工，新建悦秀过程之一。 -->
+        <activity
+            android:name=".activity.photo.PhotoProcessActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 完善用户资料，注册过程之一。 -->
+        <activity
+            android:name=".activity.user.CompleteDataActivity"
+            android:screenOrientation="portrait" />
+        <!-- 用户等级，用户资料之一。 -->
+        <activity
+            android:name=".activity.user.LevelActivity"
+            android:screenOrientation="portrait" />
+        <!-- 用户登录主界面。 -->
+        <activity
+            android:name=".activity.user.LoginActivity"
+            android:screenOrientation="portrait" />
+        <!-- 显示用户密爱，用户资料之一。 -->
+        <activity
+            android:name=".activity.user.MiAiActivity"
+            android:screenOrientation="portrait" />
+        <!-- 用户资料主界面。 -->
+        <activity
+            android:name=".activity.user.MyInformationActivity"
+            android:screenOrientation="portrait" />
+        <!-- 兴趣爱好，用户资料之一。 -->
+        <activity
+            android:name=".activity.user.MyInterestActivity"
+            android:screenOrientation="portrait" />
+        <!-- 用户注册主界面，注册过程之一。 -->
+        <activity
+            android:name=".activity.user.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <!-- 用户资料，设置过程之一。 -->
+        <activity
+            android:name=".activity.user.SelectPlaceActivity"
+            android:screenOrientation="portrait" />
+        <!-- 用户资料，设置过程之一。 -->
+        <activity
+            android:name=".activity.user.UpdataUserMsgActivity"
+            android:screenOrientation="portrait" />
+        <!-- 用户中心。 -->
+        <activity
+            android:name=".activity.user.UserCenterActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心。 -->
+        <activity
+            android:name=".activity.user.PersonCenterActivity"
+            android:screenOrientation="portrait" />
+        <!-- 设置界面。 -->
+        <activity
+            android:name=".activity.user.UserSettingActivity"
+            android:screenOrientation="portrait" />
+        <!-- 开始悦秀第一步。 -->
+        <activity
+            android:name=".activity.user.EntryActivity"
+            android:screenOrientation="portrait" />
+        <!-- 开始悦秀第三步。 -->
+        <activity
+            android:name=".activity.show.PhotoPostActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.show.VideoPostActivity"
+            android:screenOrientation="portrait" />
+        <!-- 悦美榜 -->
+        <activity
+            android:name=".activity.bang.ShowBang"
+            android:screenOrientation="portrait" />
+        <!-- 美秀详情 -->
+        <activity
+            android:name=".activity.show.ShowDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.video.VideoProcessActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.video.VideoShotActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name="com.pgyersdk.activity.FeedbackActivity" />
+
+        <receiver
+            android:name=".receiver.PushMsgReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.${GETUI_APP_ID}" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".activity.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AgreementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.show.PayNoticeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.show.VideoPlayerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.show.ShowPriceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.gift.CardListActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- Ping++ SDK -->
+        <activity
+            android:name="com.pingplusplus.android.PaymentActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- 微信支付 -->
+        <activity-alias
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:targetActivity="com.pingplusplus.android.PaymentActivity" />
+
+        <!-- 支付宝 -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind" />
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind" />
+
+        <activity android:name=".activity.gift.CardPaymentActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

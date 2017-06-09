@@ -5,6 +5,26 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+
+    //修改生成的apk名字
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def oldFile = output.outputFile
+            if (variant.buildType.name == 'release') {
+                def releaseApkName = 'MS-' + defaultConfig.versionName + '.apk'
+                output.outputFile = new File(oldFile.parent, releaseApkName)
+            }
+            if (variant.buildType.name == 'beta') {
+                def betaName = oldFile.name.replace(".apk", "-v" + "-build.apk")
+                output.outputFile = new File(oldFile.parent, betaName)
+            }
+            if (variant.buildType.name == 'debug') {
+                def releaseApkName = 'MS-debug-' + defaultConfig.versionName + '.apk'
+                output.outputFile = new File(oldFile.parent, releaseApkName)
+            }
+        }
+    }
+
     defaultConfig {
         applicationId "com.ybg.app.meishow"
         minSdkVersion 16
@@ -12,6 +32,14 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //个推推送配置
+        manifestPlaceholders = [
+                GETUI_APP_ID    : "JC6lFCLrQu8LQypvoFjDk8",
+                GETUI_APP_KEY   : "GbUEoxOnCI7cdeLa3jxjI",
+                GETUI_APP_SECRET: "xiyCyCdQ8s5eYyzyS78Dc9",
+                PACKAGE_NAME    : applicationId
+        ]
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -30,6 +58,15 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile project(':base')
+    compile 'com.pgyersdk:sdk:2.5.0'
+    compile 'com.rengwuxian.materialedittext:library:2.1.4'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'com.getui:sdk:2.7.0.0'
+    compile 'com.getui:ext:2.0.3'
+    compile 'com.pingxx:pingpp-core:2.1.9'
+    compile 'com.pingxx:pingpp-alipay:2.1.9'
+    compile 'com.pingxx:pingpp-wxpay:2.1.9'
+    compile 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
 }
 repositories {
     mavenCentral()

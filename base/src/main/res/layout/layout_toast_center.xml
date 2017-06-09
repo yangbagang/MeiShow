@@ -5,11 +5,13 @@
 
     <TextView
         android:id="@+id/tv_title_toast"
-        style="@style/text_15sp_white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@drawable/shape_bg_toast"
         android:maxWidth="240dp"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textSize="15sp"/>
+
 </RelativeLayout>

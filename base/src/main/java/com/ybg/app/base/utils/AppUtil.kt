@@ -1,6 +1,7 @@
 package com.ybg.app.base.utils
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
@@ -10,6 +11,7 @@ import android.telephony.TelephonyManager
 import android.text.TextUtils
 import android.view.Gravity
 import android.widget.Toast
+import com.ybg.app.base.R
 
 import com.ybg.app.base.constants.AppConstant
 import com.ybg.app.base.preference.AppPreferences
@@ -93,6 +95,16 @@ object AppUtil {
             return false
         }
         return true
+    }
+
+    fun getProgressDialog(context: Context, message: String): ProgressDialog {
+        val dialog = ProgressDialog(context, R.style.tmDialog)
+        dialog.setMessage(message)
+        val window = dialog.window
+        val lp = window!!.attributes
+        lp.alpha = 0.6f
+        window.attributes = lp
+        return dialog
     }
 
 }

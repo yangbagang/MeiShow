@@ -8,9 +8,9 @@ import com.ybg.app.base.constants.AppConstant
 object HttpUrl {
 
     //开发服务器地址
-    val API_HOST_DEBUG = "http://192.168.12.99:8080/ma"
+    val API_HOST_DEBUG = "http://192.168.12.99:8080/mShow"
     //生产服务器地址
-    val API_HOST_PRODUCT = "http://139.224.186.241:8080/ma"
+    val API_HOST_PRODUCT = "http://139.224.186.241:8080/mShow"
     //上传
     val FILE_SERVER_UPLOAD = "http://139.224.186.241:8080/fileserver/file/upload3"
     //预览
@@ -60,7 +60,6 @@ object HttpUrl {
     private val APPEND_FILES = "/showFile/addFiles"
     private val APPEND_EVENTS = "/ruiEvent/appendEvent"
     private val LIVE_DETAIL = "/ruiShow/detail"
-    private val CHECK_LIVE_STATUS = "/ruiShow/checkStatus"
     /*评论美秀*/
     private val PING_LIVE = "/ruiShow/ping"
     /*点赞*/
@@ -74,8 +73,6 @@ object HttpUrl {
     /*活动主题*/
     private val TOPIC_LIST = "/ruiEvent/list"
     private val PING_LIST = "/showPing/list"
-    private val FRIEND_LIST = "/userBase/friendList"
-    private val DRESSES_LIST = "/userBase/dressList"
 
     private val FOLLOW_LIST = "/follow/list"
     private val FOLLOW_FOLLOW = "/follow/follow"
@@ -127,9 +124,6 @@ object HttpUrl {
     val updateUserLabelUrl: String
         get() = ROOT_URL + UPDATE_USER_LABEL
 
-    val umLoginUrl: String
-        get() = ROOT_URL + UM_USER_LOGIN
-
     val updateClientIdUrl: String
         get() = ROOT_URL + UPDATE_CLIENT_ID
 
@@ -144,9 +138,6 @@ object HttpUrl {
 
     val showDetailUrl: String
         get() = ROOT_URL + LIVE_DETAIL
-
-    val checkStatusUrl: String
-        get() = ROOT_URL + CHECK_LIVE_STATUS
 
     val authorInfoUrl: String
         get() = ROOT_URL + AUTHOR_INFO
@@ -180,19 +171,6 @@ object HttpUrl {
     val payForShowUrl: String
         get() = ROOT_URL + "/ruiShow/payForShow"
 
-
-    /**
-     * @return 好友列表 url
-     */
-    val friendList: String
-        get() = ROOT_URL + FRIEND_LIST
-
-    /**
-     * @return 获取装扮背景列表
-     */
-    val dressesList: String
-        get() = ROOT_URL + DRESSES_LIST
-
     /**
      * @return 点赞URL
      */
@@ -202,34 +180,8 @@ object HttpUrl {
     val checkFollowStatusUrl: String
         get() = ROOT_URL + "/follow/checkFollowStatus"
 
-
-    /**
-     * @return 获取用户信息
-     */
-    val userInfo: String
-        get() = ROOT_URL + GET_USER_INFO
-
-    val commentList: String
-        get() = ROOT_URL + PING_LIST
-
-
     val createLiveUrl: String
         get() = ROOT_URL + CREATE_LIVE
-
-    val createLiveUrl2: String
-        get() = ROOT_URL + CREATE_LIVE2
-
-    val closeLiveUrl: String
-        get() = ROOT_URL + CLOSE_LIVE
-
-    val endLiveUrl: String
-        get() = ROOT_URL + LIVE_END
-
-    val showLiveUrl: String
-        get() = ROOT_URL + SHOW_LIVE
-
-    val leaveLiveUrl: String
-        get() = ROOT_URL + LEAVE_LIVE
 
     val appendFileUrl: String
         get() = ROOT_URL + APPEND_FILES
@@ -249,9 +201,6 @@ object HttpUrl {
     val pingLiveUrl: String
         get() = ROOT_URL + PING_LIVE
 
-    val sendLiveMsgUrl: String
-        get() = ROOT_URL + SEND_LIVE_MSG
-
     fun getImageUrl(fid: String): String {
         if (fid.startsWith("http:", true) || fid.startsWith("https:", true)) {
             return fid
@@ -270,39 +219,6 @@ object HttpUrl {
         return FILE_SERVER_DOWNLOAD + "/" + fid
     }
 
-    val friendMsgUrl: String
-        get() = ROOT_URL + "/userMsg/getMsgList"
-    val friendListUrl: String
-        get() = ROOT_URL + "/friend/getFriendList"
-    val dateDetailUrl: String
-        get() = ROOT_URL + "/userDate/viewDetail"
-    val acceptDateUrl: String
-        get() = ROOT_URL + "/userDate/accept"
-    val rejectDateUrl: String
-        get() = ROOT_URL + "/userDate/reject"
-    val ignoreDateUrl: String
-        get() = ROOT_URL + "/userDate/ignore"
-    val friendRequestListUrl: String
-        get() = ROOT_URL + "/friendRequest/getRequestList"
-    val acceptFriendRequestUrl: String
-        get() = ROOT_URL + "/friendRequest/acceptFriendRequest"
-    val rejectFriendRequestUrl: String
-        get() = ROOT_URL + "/friendRequest/rejectFriendRequest"
-    val checkFriendUrl: String
-        get() = ROOT_URL + "/friend/check"
-    val getFriendInfoUrl: String
-        get() = ROOT_URL + "/friend/getFriend"
-    val getUserInfoUrl: String
-        get() = ROOT_URL + "/userBase/getUserBaseByYmCode"
-    val changeDisturbStateUrl: String
-        get() = ROOT_URL + "/friend/changeDisturbState"
-    val changeBlackListStateUrl: String
-        get() = ROOT_URL + "/friend/changeBlackListState"
-    val deleteFriendUrl: String
-        get() = ROOT_URL + "/friend/delete"
-    val createFriendRequestUrl: String
-        get() = ROOT_URL + "/friendRequest/createRequest"
-
     val getCardListUrl: String
         get() = ROOT_URL + "/ruiCard/list"
     val createOrderUrl: String
@@ -311,9 +227,5 @@ object HttpUrl {
         get() = ROOT_URL + "/orderInfo/queryOrderIsPay"
     val createChargeUrl: String
         get() = ROOT_URL + "/orderInfo/createPingPlusCharge"
-    val getGiftListUrl: String
-        get() = ROOT_URL + "/ruiGift/list"
-    val sendGiftUrl: String
-        get() = ROOT_URL + "/userGift/sendGift"
 
 }

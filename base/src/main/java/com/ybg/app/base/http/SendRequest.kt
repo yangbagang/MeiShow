@@ -2,43 +2,11 @@ package com.ybg.app.base.http
 
 import android.content.Context
 import android.util.Pair
-
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.ybg.app.base.utils.LogUtil
-import com.ybg.app.base.http.builder.GetRequestBuilder
 import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.listener.UploadListener
 import java.io.File
 
-import java.util.IdentityHashMap
-
 object SendRequest {
-
-    /**
-     * 默认配置了 api_key 这个参数("api_key", "B8EA0154BFE72EFD720A")在post方法中
-     * 所有请求都添加一个tag 这个tag 是Context类型的方便结束请求
-     */
-    private val API_KEY = "B8EA0154BFE72EFD720A"
-    private var mParams: MutableMap<String, Any>? = IdentityHashMap()
-    private val mGson = GsonBuilder().serializeNulls().create()
-
-    private fun appendParams(): String {
-        if (mParams == null) {
-            mParams = IdentityHashMap<String, Any>()
-        }
-        mParams!!.put("api_key", API_KEY)
-        return mGson.toJson(mParams)
-    }
-
-    private val params: Map<String, Any>
-        get() {
-            if (mParams == null) {
-                mParams = IdentityHashMap<String, Any>()
-            }
-            mParams!!.put("api_key", API_KEY)
-            return mParams!!
-        }
 
     /**
      * 1.1获取验证码
@@ -136,22 +104,6 @@ object SendRequest {
         val params = mapOf<String, String>("token" to token, "birthday" to birthday,
                 "nickName" to nickName, "sex" to sex, "avatar" to avatar)
         OkHttpProxy.post(HttpUrl.userCompleteUrl, tag, params, callback)
-    }
-
-    /**
-     * 1.8 第三方用户登录，目前仅支持QQ，微信，新浪
-     *
-     * @param openid 手机号
-     * @param platform 密码
-     * @param nickName
-     * @param userImage
-     * @param sex
-     */
-    fun umLogin(tag: Context, openid: String, platform: String, nickName: String, userImage: String,
-                sex: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("openid" to openid, "platform" to platform, "nickName" to nickName,
-                "userImage" to userImage, "sex" to sex)
-        OkHttpProxy.post(HttpUrl.umLoginUrl, tag, params, callback)
     }
 
     /**
@@ -334,6 +286,7 @@ object SendRequest {
      * 2.7 获得板块列表
      */
     fun getCategoryList(tag: Context, callback: OkCallback<*>) {
+        val params = emptyMap<String, String>()
         OkHttpProxy.get(HttpUrl.categoryListUrl, tag, params, callback)
     }
 
@@ -341,6 +294,7 @@ object SendRequest {
      * 2.8 获得话题列表
      */
     fun getTopicList(tag: Context, callback: OkCallback<*>) {
+        val params = emptyMap<String, String>()
         OkHttpProxy.post(HttpUrl.topicListUrl, tag, params, callback)
     }
 
@@ -363,37 +317,6 @@ object SendRequest {
     fun checkFollowStatus(tag: Context, token: String, userId: Long, callback: OkCallback<*>) {
         val params = mapOf<String, String>("userId" to "$userId", "token" to token)
         OkHttpProxy.post(HttpUrl.checkFollowStatusUrl, tag, params, callback)
-    }
-
-    /**
-     * 获取装扮背景列表
-     * @param tag
-     * *
-     * @param userid
-     * *
-     * @param token
-     * *
-     * @param start
-     * *
-     * @param count
-     * *
-     * @param callback
-     */
-    fun getDressesList(tag: Context, userid: String, token: String, start: Int, count: Int, callback: OkCallback<*>) {
-        val url = HttpUrl.dressesList +
-                "?userid=" + userid +
-                "&token=" + token +
-                "&start=" + start +
-                "&count=" + count +
-                "&api_key=" + API_KEY
-        LogUtil.d(url)
-        try {
-            val builder = OkHttpProxy.get().url(url).tag(tag)
-            builder.enqueue(callback)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
     }
 
     /**
@@ -439,205 +362,6 @@ object SendRequest {
     }
 
     /**
-     * 3.1 新建直播
-     *
-     * @param token
-     * @param barId
-     * @param thumbnail
-     * @param event
-     */
-    fun createLive(tag: Context, token: String, barId: String, thumbnail: String,
-                   event: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "barId" to barId, "thumbnail" to thumbnail,
-                "event" to event)
-        OkHttpProxy.post(HttpUrl.createLiveUrl2, tag, params, callback)
-    }
-
-    /**
-     * 3.2 关闭直播
-     */
-    fun closeLive(tag: Context, token: String, showId: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "showId" to showId)
-        OkHttpProxy.post(HttpUrl.closeLiveUrl, tag, params, callback)
-    }
-
-    /**
-     * 3.3 观看直播
-     */
-    fun showLive(tag: Context, token: String, showId: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "showId" to showId)
-        OkHttpProxy.post(HttpUrl.showLiveUrl, tag, params, callback)
-    }
-
-    /**
-     * 3.4 离开直播
-     */
-    fun leaveLive(tag: Context, token: String, showId: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "showId" to showId)
-        OkHttpProxy.post(HttpUrl.leaveLiveUrl, tag, params, callback)
-    }
-
-    /**
-     * 3.5 发送直播消息
-     */
-    fun sendLiveMsg(tag: Context, token: String, showId: String, flag: String, type: String, content: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "showId" to showId, "flag" to flag, "type" to type, "content" to content)
-        OkHttpProxy.post(HttpUrl.sendLiveMsgUrl, tag, params, callback)
-    }
-
-    /**
-     * 3.6 检查直播状态
-     */
-    fun checkLiveStatus(tag: Context, showId: Long, callback: OkCallback<*>) {
-        val params = mapOf<String, Long>("showId" to showId)
-        OkHttpProxy.post(HttpUrl.checkStatusUrl, tag, params, callback)
-    }
-
-    /**
-     * 3.7 直播數據統計
-     */
-    fun getLiveDetail(tag: Context, showId: Long, callback: OkCallback<*>) {
-        val params = mapOf<String, Long>("showId" to showId)
-        OkHttpProxy.post(HttpUrl.endLiveUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.1 好友首页消息列表
-     */
-    fun getMsgList(tag: Context, token: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token)
-        OkHttpProxy.post(HttpUrl.friendMsgUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.2 好友列表
-     */
-    fun getFriendList(tag: Context, token: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token)
-        OkHttpProxy.post(HttpUrl.friendListUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.3 查看约会详情
-     */
-    fun viewDateDetail(tag: Context, token: String, dateId: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "dateId" to dateId)
-        OkHttpProxy.post(HttpUrl.dateDetailUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.4 接受约会
-     */
-    fun acceptDate(tag: Context, token: String, dateId: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "dateId" to dateId)
-        OkHttpProxy.post(HttpUrl.acceptDateUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.5 拒绝约会
-     */
-    fun rejectDate(tag: Context, token: String, dateId: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "dateId" to dateId)
-        OkHttpProxy.post(HttpUrl.rejectDateUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.6 忽略约会
-     */
-    fun ignoreDate(tag: Context, token: String, dateId: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "dateId" to dateId)
-        OkHttpProxy.post(HttpUrl.ignoreDateUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.7 查询好友请求列表
-     */
-    fun getFriendRequestList(tag: Context, token: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token)
-        OkHttpProxy.post(HttpUrl.friendRequestListUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.8 同意好友请求
-     */
-    fun acceptFriendRequest(tag: Context, token: String, requestId: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "requestId" to requestId)
-        OkHttpProxy.post(HttpUrl.acceptFriendRequestUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.8 拒绝好友请求
-     */
-    fun rejectFriendRequest(tag: Context, token: String, requestId: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "requestId" to requestId)
-        OkHttpProxy.post(HttpUrl.rejectFriendRequestUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.9 获取成员列表
-     */
-    fun getMemberList(tag: Context, token: String, groupId: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "groupId" to groupId)
-        OkHttpProxy.post(HttpUrl.acceptFriendRequestUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.10 查询是否是好友
-     */
-    fun checkFriend(tag: Context, token: String, ymCode: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "ymCode" to ymCode)
-        OkHttpProxy.post(HttpUrl.checkFriendUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.11 查看好友资料
-     */
-    fun getFriendInfo(tag: Context, token: String, ymCode: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("token" to token, "ymCode" to ymCode)
-        OkHttpProxy.post(HttpUrl.getFriendInfoUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.12 查看用户资料
-     */
-    fun getUserDetailInfo(tag: Context, ymCode: String, callback: OkCallback<*>) {
-        val params = mapOf<String, String>("ymCode" to ymCode)
-        OkHttpProxy.post(HttpUrl.getUserInfoUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.13 改变提醒状态
-     */
-    fun changeDisturbState(tag: Context, token: String, friendId: Long, disturbing: Int, callback: OkCallback<*>) {
-        val params = mapOf<String, Any>("token" to token, "friendId" to friendId, "disturbing" to disturbing)
-        OkHttpProxy.post(HttpUrl.changeDisturbStateUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.14 改变黑名单状态
-     */
-    fun changeBlackListState(tag: Context, token: String, friendId: Long, inBlacklist: Int, callback: OkCallback<*>) {
-        val params = mapOf<String, Any>("token" to token, "friendId" to friendId, "inBlacklist" to inBlacklist)
-        OkHttpProxy.post(HttpUrl.changeBlackListStateUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.15 删除好友
-     */
-    fun deleteFriend(tag: Context, token: String, friendId: Long, callback: OkCallback<*>) {
-        val params = mapOf<String, Any>("token" to token, "friendId" to friendId)
-        OkHttpProxy.post(HttpUrl.deleteFriendUrl, tag, params, callback)
-    }
-
-    /**
-     * 4.16 请求添加好友
-     */
-    fun createFriendRequest(tag: Context, token: String, userId: Long, reason: String, callback: OkCallback<*>) {
-        val params = mapOf<String, Any>("token" to token, "userId" to userId, "reason" to reason)
-        OkHttpProxy.post(HttpUrl.createFriendRequestUrl, tag, params, callback)
-    }
-
-    /**
      * 5.1 获得充值卡
      */
     fun getCardList(tag: Context, callback: OkCallback<*>) {
@@ -667,22 +391,6 @@ object SendRequest {
     fun createCharge(tag: Context, orderNo: String, payType: String,callback: OkCallback<*>) {
         val params = mapOf("orderNo" to orderNo, "payType" to payType)
         OkHttpProxy.post(HttpUrl.createChargeUrl, tag, params, callback)
-    }
-
-    /**
-     * 5.5 查询订单状态
-     */
-    fun getGiftList(tag: Context, pageNum: Int, pageSize: Int, callback: OkCallback<*>) {
-        val params = mapOf("pageNum" to pageNum, "pageSize" to pageSize)
-        OkHttpProxy.post(HttpUrl.getGiftListUrl, tag, params, callback)
-    }
-
-    /**
-     * 5.6 查询订单状态
-     */
-    fun sendGift(tag: Context, token: String, userId: Long, giftId: Long, callback: OkCallback<*>) {
-        val params = mapOf("token" to token, "userId" to userId, "giftId" to giftId)
-        OkHttpProxy.post(HttpUrl.sendGiftUrl, tag, params, callback)
     }
 
 }
