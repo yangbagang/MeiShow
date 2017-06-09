@@ -9,15 +9,12 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ybg.app.base.bean.BangItem
 import com.ybg.app.base.bean.JSonResultBean
-
-import com.ybg.app.meishow.R
-import com.ybg.app.meishow.activity.base.BaseActivity
-import com.ybg.app.meishow.adapter.MiAiAdapter
-import com.ybg.app.meishow.app.ShowApplication
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.parser.OkStringParser
-import com.ybg.app.base.utils.ToastUtil
+import com.ybg.app.meishow.R
+import com.ybg.app.meishow.activity.base.BaseActivity
+import com.ybg.app.meishow.adapter.MiAiAdapter
 import com.ybg.app.meishow.view.bgarefresh.BGANormalRefreshViewHolder
 import com.ybg.app.meishow.view.bgarefresh.BGARefreshLayout
 import java.util.*
@@ -26,8 +23,6 @@ import java.util.*
  * 类描述：密爱页面
  */
 class MiAiActivity : BaseActivity() {
-
-    private val showApplication = ShowApplication.instance!!
 
     var beginTime = "2016-01-01"
     var endTime = "2999-12-31"
@@ -144,7 +139,7 @@ class MiAiActivity : BaseActivity() {
                 pageNum += 1
                 loadData()
             } else {
-                ToastUtil.show(showApplication, "没有更多数据!")
+                showToast("没有更多数据!")
                 return false
             }
             return true

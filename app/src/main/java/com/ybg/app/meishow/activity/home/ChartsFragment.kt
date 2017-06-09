@@ -4,18 +4,16 @@ import android.os.Bundle
 import android.view.View
 import android.widget.RelativeLayout
 import com.google.gson.reflect.TypeToken
-import com.ybg.app.meishow.activity.base.BaseFragment
 import com.ybg.app.base.bean.BangItem
 import com.ybg.app.base.bean.JSonResultBean
-import com.ybg.app.meishow.R
-import com.ybg.app.meishow.activity.bang.ShowBang
 import com.ybg.app.base.http.HttpUrl
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.parser.OkStringParser
+import com.ybg.app.meishow.R
+import com.ybg.app.meishow.activity.bang.ShowBang
+import com.ybg.app.meishow.activity.base.BaseFragment
 import com.ybg.app.meishow.utils.ImageLoaderUtils
-import com.ybg.app.base.utils.ToastUtil
-import com.ybg.app.meishow.app.ShowApplication
 import kotlinx.android.synthetic.main.fragment_charts.*
 
 /**
@@ -28,8 +26,6 @@ class ChartsFragment : BaseFragment() {
     private lateinit var renQiBang: RelativeLayout
     private lateinit var huoLiBang: RelativeLayout
     private lateinit var haoQiBang: RelativeLayout
-
-    private val showApplication = ShowApplication.instance!!
 
     override fun setContentViewId(): Int {
         return R.layout.fragment_charts
@@ -101,13 +97,13 @@ class ChartsFragment : BaseFragment() {
                     }
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
 
             override fun onFailure(e: Throwable) {
-                ToastUtil.show(showApplication, "获取美力榜失败")
+                showToast("获取美力榜失败")
             }
 
         })
@@ -147,13 +143,13 @@ class ChartsFragment : BaseFragment() {
                     }
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
 
             override fun onFailure(e: Throwable) {
-                ToastUtil.show(showApplication, "获取美力榜失败")
+                showToast("获取美力榜失败")
             }
 
         })
@@ -193,13 +189,13 @@ class ChartsFragment : BaseFragment() {
                     }
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
 
             override fun onFailure(e: Throwable) {
-                ToastUtil.show(showApplication, "获取美力榜失败")
+                showToast("获取美力榜失败")
             }
 
         })
@@ -239,13 +235,13 @@ class ChartsFragment : BaseFragment() {
                     }
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
 
             override fun onFailure(e: Throwable) {
-                ToastUtil.show(showApplication, "获取美力榜失败")
+                showToast("获取美力榜失败")
             }
 
         })
@@ -285,13 +281,13 @@ class ChartsFragment : BaseFragment() {
                     }
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
 
             override fun onFailure(e: Throwable) {
-                ToastUtil.show(showApplication, "获取美力榜失败")
+                showToast("获取美力榜失败")
             }
 
         })

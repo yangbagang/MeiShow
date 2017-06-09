@@ -6,21 +6,17 @@ import android.widget.ListView
 import com.google.gson.reflect.TypeToken
 import com.ybg.app.base.bean.JSonResultBean
 import com.ybg.app.base.bean.RuiCard
-import com.ybg.app.meishow.R
-import com.ybg.app.meishow.activity.base.BaseActivity
-import com.ybg.app.meishow.adapter.CardItemAdapter
 import com.ybg.app.base.constants.IntentExtra
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.parser.OkStringParser
-import com.ybg.app.base.utils.ToastUtil
+import com.ybg.app.meishow.R
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.activity.show.PayNoticeActivity
-import com.ybg.app.meishow.app.ShowApplication
+import com.ybg.app.meishow.adapter.CardItemAdapter
 import java.util.*
 
 class CardListActivity : BaseActivity() {
-
-    private val showApplication = ShowApplication.instance!!
 
     private lateinit var mListView: ListView
     private lateinit var mAdapter: CardItemAdapter
@@ -69,13 +65,13 @@ class CardListActivity : BaseActivity() {
                     mAdapter.notifyDataSetChanged()
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
 
             override fun onFailure(e: Throwable) {
-                ToastUtil.show(showApplication, "获取数据失败")
+                showToast("获取数据失败")
             }
         })
     }
@@ -90,13 +86,13 @@ class CardListActivity : BaseActivity() {
                     CardPaymentActivity.start(mContext!!, orderNo, ruiCard.realPrice)
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
 
             override fun onFailure(e: Throwable) {
-                ToastUtil.show(showApplication, "操作失败")
+                showToast("操作失败")
             }
         })
     }

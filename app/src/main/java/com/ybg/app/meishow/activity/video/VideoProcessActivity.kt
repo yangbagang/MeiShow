@@ -10,13 +10,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.MediaController
-import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.base.constants.AppConstant
 import com.ybg.app.base.utils.BitmapUtils
-import com.ybg.app.base.utils.ToastUtil
 import com.ybg.app.meishow.R
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.activity.show.VideoPostActivity
-import com.ybg.app.meishow.app.ShowApplication
 import kotlinx.android.synthetic.main.activity_video_process.*
 import java.io.File
 
@@ -72,7 +70,7 @@ class VideoProcessActivity : BaseActivity() {
                 VideoPostActivity.start(mContext!!, pic, video)
                 finish()
             } else {
-                ToastUtil.show(ShowApplication.instance!!, "视频不存在或格式不支持")
+                showToast("视频不存在或格式不支持")
             }
             return true
         }

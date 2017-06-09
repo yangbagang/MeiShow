@@ -7,14 +7,12 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ybg.app.base.bean.BangItem
 import com.ybg.app.base.bean.JSonResultBean
-import com.ybg.app.meishow.R
-import com.ybg.app.meishow.activity.base.BaseFragment
-import com.ybg.app.meishow.adapter.BangAdapter
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.parser.OkStringParser
-import com.ybg.app.base.utils.ToastUtil
-import com.ybg.app.meishow.app.ShowApplication
+import com.ybg.app.meishow.R
+import com.ybg.app.meishow.activity.base.BaseFragment
+import com.ybg.app.meishow.adapter.BangAdapter
 import com.ybg.app.meishow.view.bgarefresh.BGANormalRefreshViewHolder
 import com.ybg.app.meishow.view.bgarefresh.BGARefreshLayout
 import java.util.*
@@ -23,8 +21,6 @@ import java.util.*
  * Created by yangbagang on 2016/12/4.
  */
 abstract class BangBaseFragment: BaseFragment() {
-
-    protected val showApplication = ShowApplication.instance!!
 
     private val titles = arrayOf("美力值", "美力值", "活力值", "人气值", "亲善值")
     open var type = 1
@@ -69,7 +65,7 @@ abstract class BangBaseFragment: BaseFragment() {
     }
 
     fun loadRuiMeiBang() {
-        ToastUtil.show(showApplication, "正在开发中，更多功能敬请期待...")
+        showToast("正在开发中，更多功能敬请期待...")
     }
 
     fun loadMeiLiBang() {
@@ -151,7 +147,7 @@ abstract class BangBaseFragment: BaseFragment() {
     }
 
     fun loadHaoQiBang() {
-        ToastUtil.show(showApplication, "正在开发中，更多功能敬请期待...")
+        showToast("正在开发中，更多功能敬请期待...")
     }
 
     private val mHandler = object : Handler() {
@@ -199,7 +195,7 @@ abstract class BangBaseFragment: BaseFragment() {
                 pageNum += 1
                 loadData()
             } else {
-                ToastUtil.show(showApplication, "没有更多数据!")
+                showToast("没有更多数据!")
                 return false
             }
             return true

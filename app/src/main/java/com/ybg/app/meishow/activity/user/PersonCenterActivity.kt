@@ -26,14 +26,12 @@ import com.ybg.app.meishow.R
 import com.ybg.app.meishow.activity.MainActivity
 import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.adapter.HomeShowAdapter
-import com.ybg.app.meishow.app.ShowApplication
 import com.ybg.app.base.http.HttpUrl
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.parser.OkStringParser
 import com.ybg.app.meishow.utils.ImageLoaderUtils
 import com.ybg.app.meishow.utils.MeiLiImgUtil
-import com.ybg.app.base.utils.ToastUtil
 import com.ybg.app.meishow.view.CircleImageView
 import com.ybg.app.meishow.view.bgarefresh.BGANormalRefreshViewHolder
 import com.ybg.app.meishow.view.bgarefresh.BGARefreshLayout
@@ -44,8 +42,6 @@ import java.util.*
  * 类描述：个人中心
  */
 class PersonCenterActivity : BaseActivity(), View.OnClickListener {
-
-    private val showApplication = ShowApplication.instance!!
 
     private var vDynamic_float: View? = null
     private var tvDynamic_float: TextView? = null
@@ -269,10 +265,6 @@ class PersonCenterActivity : BaseActivity(), View.OnClickListener {
                 fl_user_activity.visibility = View.VISIBLE
                 ll_user_fortune.visibility = View.GONE
             }
-            R.id.rl_join_data -> {
-                setResSelector(1)
-                ToastUtil.show(showApplication, "约会")
-            }
             R.id.rl_achievement -> {
                 setResSelector(2)
                 fl_user_activity.visibility = View.GONE
@@ -419,7 +411,7 @@ class PersonCenterActivity : BaseActivity(), View.OnClickListener {
                     }
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
@@ -480,7 +472,7 @@ class PersonCenterActivity : BaseActivity(), View.OnClickListener {
                 pageNum += 1
                 getUserShowList()
             } else {
-                ToastUtil.show(showApplication, "没有更多数据!")
+                showToast("没有更多数据!")
                 return false//不显示更多加载
             }
             return true

@@ -28,7 +28,6 @@ import com.ybg.app.base.utils.*
 import com.ybg.app.meishow.R
 import com.ybg.app.meishow.activity.user.UserCenterActivity
 import com.ybg.app.meishow.adapter.PingItemAdapter
-import com.ybg.app.meishow.app.ShowApplication
 import com.ybg.app.meishow.utils.ImageLoaderUtils
 import com.ybg.app.meishow.view.BannerFrame
 import com.ybg.app.meishow.view.CircleImageView
@@ -38,8 +37,6 @@ import kotlinx.android.synthetic.main.activity_home_show_detail.*
  * Created by yangbagang on 2016/12/5.
  */
 class ShowDetailActivity : BaseActivity() {
-
-    private val showApplication = ShowApplication.instance!!
 
     private lateinit var show: YueShow
     //事件定义
@@ -196,13 +193,13 @@ class ShowDetailActivity : BaseActivity() {
                     loadInfo(userBase)
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
 
             override fun onFailure(e: Throwable) {
-                ToastUtil.show(showApplication, "获取用户信息失败。")
+                showToast("获取用户信息失败。")
             }
         })
     }
@@ -269,7 +266,7 @@ class ShowDetailActivity : BaseActivity() {
                         if (files.isNotEmpty()) {
                             val first = files.first()
                             videoUrl = HttpUrl.getVideoUrl(first.file)
-                            if (videoUrl != null && showApplication.isAutoPlay() &&
+                            if (videoUrl != null && mApplication.isAutoPlay() &&
                                     NetworkUtil.getNetworkState(mContext!!) == NetworkType.WIFI) {
                                 //wifi下自动播放
                                 VideoPlayerActivity.start(mContext!!, videoUrl!!)
@@ -278,7 +275,7 @@ class ShowDetailActivity : BaseActivity() {
                     }
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
@@ -311,13 +308,13 @@ class ShowDetailActivity : BaseActivity() {
                     }
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
 
             override fun onFailure(e: Throwable) {
-                ToastUtil.show(showApplication, "获取点赞用户失败")
+                showToast("获取点赞用户失败")
                 e.printStackTrace()
             }
         })
@@ -334,13 +331,13 @@ class ShowDetailActivity : BaseActivity() {
                     pingAdapter.notifyDataSetChanged()
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
 
             override fun onFailure(e: Throwable) {
-                ToastUtil.show(showApplication, "获取评论失败")
+                showToast("获取评论失败")
                 e.printStackTrace()
             }
         })
@@ -374,7 +371,7 @@ class ShowDetailActivity : BaseActivity() {
         override fun onClick(v: View) {
             if (!mApplication.hasLogin()) {
                 //未登录不能评论
-                ToastUtil.show(showApplication, "你还没有登录，请登录后再发表评论。")
+                showToast("你还没有登录，请登录后再发表评论。")
                 return
             }
             iv_comment.isClickable = false
@@ -387,12 +384,12 @@ class ShowDetailActivity : BaseActivity() {
                             if (jsonBean != null && jsonBean.isSuccess) {
                                 loadPingList()
                                 et_comment_content.text.clear()
-                                ToastUtil.show(showApplication, "发表评论完成")
+                                showToast("发表评论完成")
                                 iv_comment.visibility = View.GONE
                                 iv_like.visibility = View.VISIBLE
                             } else {
                                 jsonBean?.let {
-                                    ToastUtil.show(showApplication, jsonBean.message)
+                                    showToast(jsonBean.message)
                                 }
                             }
                             iv_comment.isClickable = true
@@ -400,7 +397,7 @@ class ShowDetailActivity : BaseActivity() {
 
                         override fun onFailure(e: Throwable) {
                             e.printStackTrace()
-                            ToastUtil.show(showApplication, "评论失败")
+                            showToast("评论失败")
                             iv_comment.isClickable = true
                         }
                     })
@@ -411,7 +408,7 @@ class ShowDetailActivity : BaseActivity() {
 
         override fun onClick(v: View) {
             if (!mApplication.hasLogin()) {
-                ToastUtil.show(showApplication, "请登录后再点赞")
+                showToast("请登录后再点赞")
             } else {
                 iv_like.isClickable = false
                 SendRequest.zanLive(mContext!!, mApplication.token, show.id!!,
@@ -426,7 +423,7 @@ class ShowDetailActivity : BaseActivity() {
                             }
 
                             override fun onFailure(e: Throwable) {
-                                ToastUtil.show(showApplication, "点赞失败")
+                                showToast("点赞失败")
                                 iv_like.isClickable = true
                             }
 

@@ -8,16 +8,10 @@ import android.os.AsyncTask
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.ImageView
 import com.google.gson.reflect.TypeToken
 import com.ybg.app.base.bean.JSonResultBean
 import com.ybg.app.base.bean.SystemLabel
-import com.ybg.app.base.utils.DateUtil
-import com.ybg.app.meishow.R
-import com.ybg.app.meishow.activity.base.BaseActivity
-import com.ybg.app.meishow.adapter.InterestGridViewAdapter
-import com.ybg.app.meishow.adapter.MyInfoAdapter
 import com.ybg.app.base.constants.AppConstant
 import com.ybg.app.base.constants.IntentExtra
 import com.ybg.app.base.http.HttpUrl
@@ -27,10 +21,13 @@ import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.listener.UploadListener
 import com.ybg.app.base.http.parser.OkStringParser
 import com.ybg.app.base.utils.BitmapUtils
+import com.ybg.app.base.utils.DateUtil
+import com.ybg.app.meishow.R
+import com.ybg.app.meishow.activity.base.BaseActivity
+import com.ybg.app.meishow.adapter.InterestGridViewAdapter
+import com.ybg.app.meishow.adapter.MyInfoAdapter
 import com.ybg.app.meishow.utils.ImageLoaderUtils
 import com.ybg.app.meishow.utils.OnoptionsUtils
-import com.ybg.app.base.utils.ToastUtil
-import com.ybg.app.meishow.app.ShowApplication
 import com.ybg.app.meishow.view.CircleImageView
 import com.ybg.app.meishow.view.CustomerGridView
 import com.ybg.app.meishow.view.gallery.MultiImageSelectorActivity
@@ -49,8 +46,6 @@ import java.util.*
  * 类描述：个人资料
  */
 class MyInformationActivity : BaseActivity() {
-
-    private val showApplication = ShowApplication.instance!!
 
     private val REQUEST_BIAOQIAN = 0
     private val REQUEST_NICKNAME = 1
@@ -321,7 +316,7 @@ class MyInformationActivity : BaseActivity() {
 
             override fun onFailure(e: Exception) {
                 workInLoopThread {
-                    ToastUtil.show(showApplication, "上传头像失败")
+                    showToast("上传头像失败")
                 }
             }
 
@@ -355,7 +350,7 @@ class MyInformationActivity : BaseActivity() {
             }
 
             override fun onFailure(e: Throwable) {
-                ToastUtil.show(showApplication, "保存失败")
+                showToast("保存失败")
                 e.printStackTrace()
             }
         })
@@ -370,13 +365,13 @@ class MyInformationActivity : BaseActivity() {
                     updateUserInfo()
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
 
             override fun onFailure(e: Throwable) {
-                ToastUtil.show(showApplication, "保存失败")
+                showToast("保存失败")
                 e.printStackTrace()
             }
         })
@@ -389,7 +384,7 @@ class MyInformationActivity : BaseActivity() {
             override fun onSuccess(code: Int, response: String) {
                 val jsonBean = JSonResultBean.fromJSON(response)
                 if (jsonBean != null && jsonBean.isSuccess) {
-                    ToastUtil.show(showApplication, "操作完成")
+                    showToast("操作完成")
                 }
             }
 

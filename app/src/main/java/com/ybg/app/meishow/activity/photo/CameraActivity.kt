@@ -17,13 +17,12 @@ import android.view.SurfaceHolder
 import android.view.View
 import android.view.animation.ScaleAnimation
 import android.widget.RelativeLayout
-import com.ybg.app.meishow.R
-import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.base.constants.AppConstant
 import com.ybg.app.base.constants.MessageHandler
 import com.ybg.app.base.utils.*
 import com.ybg.app.base.utils.camera.CameraHelper
-import com.ybg.app.meishow.app.ShowApplication
+import com.ybg.app.meishow.R
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.utils.CameraUtil
 import com.ybg.app.meishow.utils.ResourcesUtils
 import kotlinx.android.synthetic.main.activity_camera.*
@@ -38,7 +37,6 @@ import java.util.*
  */
 @SuppressWarnings("deprecation") //用到和部分过时的API
 class CameraActivity : BaseActivity() {
-    private val showApplication = ShowApplication.instance!!
 
     private var mCameraHelper: CameraHelper? = null
     private var parameters: Camera.Parameters? = null
@@ -97,7 +95,7 @@ class CameraActivity : BaseActivity() {
             -> try {
                 cameraInst!!.takePicture(null, null, mPictureCallback)
             } catch (e: Exception) {
-                ToastUtil.show(showApplication, "拍照失败，请重试!")
+                showToast("拍照失败，请重试!")
                 cameraInst!!.startPreview()
             }
 
@@ -236,7 +234,7 @@ class CameraActivity : BaseActivity() {
             }
 
         } else {
-            ToastUtil.show(showApplication, "切换失败，请重试！")
+            showToast("切换失败，请重试！")
         }
     }
 
@@ -329,7 +327,7 @@ class CameraActivity : BaseActivity() {
                 finish()
                 LogUtil.d(TAG + result)
             } else {
-                ToastUtil.show(showApplication, "拍照失败，请稍后重试！")
+                showToast("拍照失败，请稍后重试！")
             }
         }
     }

@@ -212,7 +212,7 @@ class PhotoPostActivity : PostShowActivity() {
                 e.printStackTrace()
                 println("上传缩略图失败，mThumbnail=$mThumbnail")
                 workInLoopThread {
-                    ToastUtil.show(showApplication, "上传图片失败")
+                    showToast("上传图片失败")
                 }
             }
 
@@ -257,7 +257,7 @@ class PhotoPostActivity : PostShowActivity() {
             override fun onFailure(e: Exception) {
                 e.printStackTrace()
                 workInLoopThread {
-                    ToastUtil.show(showApplication, "上传图片失败")
+                    showToast("上传图片失败")
                 }
             }
 
@@ -293,7 +293,7 @@ class PhotoPostActivity : PostShowActivity() {
                     progress!!.dismiss()
                     progress = null
                 }
-                ToastUtil.show(showApplication, "建立美秀失败。")
+                showToast("建立美秀失败。")
             }
 
         })
@@ -324,7 +324,7 @@ class PhotoPostActivity : PostShowActivity() {
                 }
 
                 override fun onFailure(e: Throwable) {
-                    ToastUtil.show(showApplication, "保存文件失败。")
+                    showToast("保存文件失败。")
                     if (progress != null && progress!!.isShowing) {
                         progress!!.dismiss()
                         progress = null
@@ -333,7 +333,7 @@ class PhotoPostActivity : PostShowActivity() {
 
             })
         }
-        ToastUtil.show(showApplication, "创建完成。")
+        showToast("创建完成。")
         finish()
     }
 

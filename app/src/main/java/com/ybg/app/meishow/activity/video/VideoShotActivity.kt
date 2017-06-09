@@ -10,8 +10,6 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import com.ybg.app.meishow.R
 import com.ybg.app.meishow.activity.base.BaseActivity
-import com.ybg.app.base.utils.ToastUtil
-import com.ybg.app.meishow.app.ShowApplication
 import com.ybg.app.meishow.view.VideoRecorderView.OnRecordFinishListener
 import kotlinx.android.synthetic.main.activity_video_shot.*
 
@@ -55,7 +53,7 @@ class VideoShotActivity : BaseActivity() {
                     if (videoRecorderView.getVecordFile() != null)
                         videoRecorderView.getVecordFile()?.delete()//删除录制的过短视频
                     videoRecorderView.stop()//停止录制
-                    ToastUtil.show(ShowApplication.instance!!, "视频录制时间太短")
+                    showToast("视频录制时间太短")
                 }
             }
             true
@@ -139,7 +137,7 @@ class VideoShotActivity : BaseActivity() {
             if (isSuccess) {
                 val videoFile = videoRecorderView.getVecordFile()?.absolutePath
                 if (videoFile == null) {
-                    ToastUtil.show(ShowApplication.instance!!, "视频录制失败")
+                    showToast("视频录制失败")
                     return
                 }
                 VideoProcessActivity.start(mContext!!, videoFile)

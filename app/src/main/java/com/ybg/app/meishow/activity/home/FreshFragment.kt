@@ -12,18 +12,14 @@ import com.ybg.app.base.constants.MessageEvent
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.parser.OkStringParser
-import com.ybg.app.base.utils.ToastUtil
 import com.ybg.app.meishow.R
 import com.ybg.app.meishow.adapter.HomeShowAdapter
-import com.ybg.app.meishow.app.ShowApplication
 import com.ybg.app.meishow.view.bgarefresh.BGANormalRefreshViewHolder
 import com.ybg.app.meishow.view.bgarefresh.BGARefreshLayout
 import org.greenrobot.eventbus.Subscribe
 import java.util.*
 
 class FreshFragment : BaseFragment() {
-
-    private val showApplication = ShowApplication.instance!!
 
     private lateinit var mListView: ListView
     private lateinit var mRefreshLayout: BGARefreshLayout
@@ -137,7 +133,7 @@ class FreshFragment : BaseFragment() {
                 pageNum += 1
                 getHomeNewInfo()
             } else {
-                ToastUtil.show(showApplication, "没有更多数据!")
+                showToast("没有更多数据!")
                 return false
             }
             return true

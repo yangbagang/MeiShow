@@ -25,10 +25,8 @@ import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.parser.OkStringParser
 import com.ybg.app.base.utils.GsonUtil
 import com.ybg.app.base.utils.MeiLiUtil
-import com.ybg.app.base.utils.ToastUtil
 import com.ybg.app.meishow.R
 import com.ybg.app.meishow.adapter.HomeShowAdapter
-import com.ybg.app.meishow.app.ShowApplication
 import com.ybg.app.meishow.utils.ImageLoaderUtils
 import com.ybg.app.meishow.utils.MeiLiImgUtil
 import com.ybg.app.meishow.view.CircleImageView
@@ -41,8 +39,6 @@ import java.util.*
  * 类描述：用户中心
  */
 class UserCenterActivity : BaseActivity(), View.OnClickListener {
-
-    private val showApplication = ShowApplication.instance!!
 
     private var vDynamic_float: View? = null
     private var tvDynamic_float: TextView? = null
@@ -316,7 +312,7 @@ class UserCenterActivity : BaseActivity(), View.OnClickListener {
                     }
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
@@ -377,7 +373,7 @@ class UserCenterActivity : BaseActivity(), View.OnClickListener {
                 pageNum += 1
                 getUserShowList()
             } else {
-                ToastUtil.show(showApplication, "没有更多数据!")
+                showToast("没有更多数据!")
                 return false//不显示更多加载
             }
             return true

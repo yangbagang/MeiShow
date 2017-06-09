@@ -7,15 +7,13 @@ import android.view.View
 import android.widget.Switch
 import android.widget.TextView
 import com.pgyersdk.update.PgyUpdateManager
+import com.ybg.app.base.constants.AppConstant
 import com.ybg.app.base.utils.AppUtil
+import com.ybg.app.base.utils.FileUtils
 import com.ybg.app.meishow.R
 import com.ybg.app.meishow.activity.AgreementActivity
 import com.ybg.app.meishow.activity.MainActivity
 import com.ybg.app.meishow.activity.base.BaseActivity
-import com.ybg.app.base.constants.AppConstant
-import com.ybg.app.base.utils.FileUtils
-import com.ybg.app.base.utils.ToastUtil
-import com.ybg.app.meishow.app.ShowApplication
 import kotlinx.android.synthetic.main.activity_user_setting.*
 import java.io.File
 
@@ -23,8 +21,6 @@ import java.io.File
  * 类描述：设置中心页面
  */
 class UserSettingActivity : BaseActivity() {
-
-    private val showApplication = ShowApplication.instance!!
 
     private var tvCache: TextView? = null
     private var tvCopyright: TextView? = null
@@ -46,24 +42,24 @@ class UserSettingActivity : BaseActivity() {
     }
 
     override fun init() {
-        if (showApplication.isAutoPlay()) {
+        if (mApplication.isAutoPlay()) {
             switchWifiAuto?.isChecked = true
         }
-        if (showApplication.isReceiverMsg()) {
+        if (mApplication.isReceiverMsg()) {
             switchNewMsg?.isChecked = true
         }
         switchWifiAuto!!.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                showApplication.setAutoPlay(true)
+                mApplication.setAutoPlay(true)
             } else {
-                showApplication.setAutoPlay(false)
+                mApplication.setAutoPlay(false)
             }
         }
         switchNewMsg!!.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                showApplication.setReceiverMsg(true)
+                mApplication.setReceiverMsg(true)
             } else {
-                showApplication.setReceiverMsg(false)
+                mApplication.setReceiverMsg(false)
             }
         }
         tvCopyright?.text = AppUtil.getAppVersion(mContext!!, "com.ybg.app.meishow")
@@ -145,7 +141,7 @@ class UserSettingActivity : BaseActivity() {
                 if (result != null && result) {
                     tv_cache.text = "0B"
                 } else {
-                    ToastUtil.show(showApplication, "清理缓存失败。")
+                    showToast("清理缓存失败。")
                 }
             }
         }.execute()

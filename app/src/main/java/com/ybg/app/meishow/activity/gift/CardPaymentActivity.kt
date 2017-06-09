@@ -10,13 +10,9 @@ import com.ybg.app.base.constants.IntentExtra
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.parser.OkStringParser
-import com.ybg.app.base.utils.ToastUtil
-import com.ybg.app.meishow.app.ShowApplication
 import kotlinx.android.synthetic.main.activity_card_payment.*
 
 class CardPaymentActivity : BaseActivity() {
-
-    private val showApplication = ShowApplication.instance!!
 
     override fun setContentViewId(): Int {
         return R.layout.activity_card_payment
@@ -49,14 +45,14 @@ class CardPaymentActivity : BaseActivity() {
                     Pingpp.createPayment(this@CardPaymentActivity, jsonBean.data)
                 } else {
                     jsonBean?.let {
-                        ToastUtil.show(showApplication, jsonBean.message)
+                        showToast(jsonBean.message)
                     }
                 }
             }
 
             override fun onFailure(e: Throwable) {
                 e.printStackTrace()
-                ToastUtil.show(showApplication, "操作失败")
+                showToast("操作失败")
             }
         })
     }

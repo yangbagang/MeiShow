@@ -5,16 +5,14 @@ import android.os.Message
 import android.widget.ListView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.ybg.app.meishow.activity.base.BaseFragment
 import com.ybg.app.base.bean.JSonResultBean
 import com.ybg.app.base.bean.YueShow
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.parser.OkStringParser
-import com.ybg.app.base.utils.ToastUtil
 import com.ybg.app.meishow.R
+import com.ybg.app.meishow.activity.base.BaseFragment
 import com.ybg.app.meishow.adapter.HomeShowAdapter
-import com.ybg.app.meishow.app.ShowApplication
 import com.ybg.app.meishow.view.bgarefresh.BGANormalRefreshViewHolder
 import com.ybg.app.meishow.view.bgarefresh.BGARefreshLayout
 import java.util.*
@@ -23,8 +21,6 @@ import java.util.*
  * 类描述：友秀圈
  */
 class FollowFragment : BaseFragment() {
-
-    private val showApplication = ShowApplication.instance!!
 
     private lateinit var mListView: ListView
     private lateinit var mRefreshLayout: BGARefreshLayout
@@ -107,7 +103,7 @@ class FollowFragment : BaseFragment() {
                 pageNum += 1
                 getFriend()
             } else {
-                ToastUtil.show(showApplication, "没有更多数据!")
+                showToast("没有更多数据!")
                 return false//不显示更多加载
             }
             return true

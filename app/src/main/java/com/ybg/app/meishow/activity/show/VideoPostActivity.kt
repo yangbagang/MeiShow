@@ -90,12 +90,12 @@ class VideoPostActivity : PostShowActivity() {
                             //创建完成，开始添加附件
                             val show = mGson?.fromJson(resultBean.data, YueShow::class.java)
                             if (show == null) {
-                                ToastUtil.show(showApplication, "建立美秀失败。")
+                                showToast("建立美秀失败。")
                                 return
                             }
                             taskThread.setYueShow(show)
                             //创建完成
-                            ToastUtil.show(showApplication, "创建完成。")
+                            showToast("创建完成。")
                             finish()
                         } else {
                             resultBean?.let {
@@ -105,7 +105,7 @@ class VideoPostActivity : PostShowActivity() {
                     }
 
                     override fun onFailure(e: Throwable) {
-                        ToastUtil.show(showApplication, "建立美秀失败。")
+                        showToast("建立美秀失败。")
                     }
 
                 })
@@ -214,7 +214,7 @@ class VideoPostActivity : PostShowActivity() {
                     }
 
                     override fun onFailure(e: Throwable) {
-                        //ToastUtil.show("保存文件失败。")
+                        //showToast("保存文件失败。")
                         e.printStackTrace()
                         println("添加视频文件失败...")
                     }

@@ -24,8 +24,6 @@ import kotlinx.android.synthetic.main.activity_entry.*
  */
 class EntryActivity : BaseActivity() {
 
-    private val showApplication = ShowApplication.instance!!
-
     override fun setContentViewId(): Int {
         return R.layout.activity_entry
     }
@@ -49,7 +47,7 @@ class EntryActivity : BaseActivity() {
             val list = data.getStringArrayListExtra(MultiImageSelectorActivity
                     .EXTRA_RESULT)
             if (list.isEmpty()) {
-                ToastUtil.show(showApplication, "你最少需要选择一张图片")
+                showToast("你最少需要选择一张图片")
                 return
             }
             PhotoProcessActivity.start(mContext!!, list)
@@ -76,7 +74,7 @@ class EntryActivity : BaseActivity() {
      */
     private var onClickListener: View.OnClickListener = View.OnClickListener { v ->
         if (!mApplication.hasLogin()) {
-            ToastUtil.show(showApplication, "你还没有登录，请先登录。")
+            showToast("你还没有登录，请先登录。")
         } else {
             when (v.id) {
                 R.id.rl_entry_updata_photo//上传图片
