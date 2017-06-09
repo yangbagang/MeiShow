@@ -96,10 +96,8 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
         /**用户操作 */
         viewHolder.iv_comment!!.setOnClickListener(commentOnClickListener)
         viewHolder.iv_parise!!.setOnClickListener(zanOnClickListener)
-        viewHolder.iv_transmit!!.setOnClickListener(transOnClickListener)
         viewHolder.tv_comment!!.text = "${mList!![position].pingNum}"
         viewHolder.tv_parise!!.text = "${mList!![position].zanNum}"
-        viewHolder.tv_transmit!!.text = "${mList!![position].shareNum}"
         return convertView!!
     }
 
@@ -189,10 +187,8 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
         //用户操作
         viewHolder.tv_comment = convertView.findViewById(R.id.tv_show_comment) as TextView
         viewHolder.tv_parise = convertView.findViewById(R.id.tv_show_praise) as TextView
-        viewHolder.tv_transmit = convertView.findViewById(R.id.tv_show_transmit) as TextView
         viewHolder.iv_comment = convertView.findViewById(R.id.iv_show_comment) as ImageView
         viewHolder.iv_parise = convertView.findViewById(R.id.iv_show_praise) as ImageView
-        viewHolder.iv_transmit = convertView.findViewById(R.id.iv_show_transmit) as ImageView
         convertView.tag = viewHolder
     }
 
@@ -261,10 +257,8 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
         internal var tv_content: TextView? = null//发布文字内容
         internal var tv_comment: TextView? = null//评论数
         internal var tv_parise: TextView? = null//点赞数
-        internal var tv_transmit: TextView? = null//转发数
         internal var iv_comment: ImageView? = null//评论图标
         internal var iv_parise: ImageView? = null//点赞图标
-        internal var iv_transmit: ImageView? = null//转发图标
     }
 
     /**
