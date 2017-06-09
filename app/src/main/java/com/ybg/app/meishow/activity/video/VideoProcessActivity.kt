@@ -10,7 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.MediaController
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.base.constants.AppConstant
 import com.ybg.app.base.utils.BitmapUtils
 import com.ybg.app.base.utils.ToastUtil

@@ -15,7 +15,7 @@ import android.widget.TextView
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.base.bean.*
 import com.ybg.app.base.constants.IntentExtra
 import com.ybg.app.base.decoration.SpaceItemDecoration

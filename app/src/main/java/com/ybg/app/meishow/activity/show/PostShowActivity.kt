@@ -3,7 +3,7 @@ package com.ybg.app.meishow.activity.show
 import android.content.Intent
 import android.text.TextUtils
 import android.view.View
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.base.utils.ToastUtil
 import com.ybg.app.meishow.app.ShowApplication
 import kotlinx.android.synthetic.main.activity_show_post.*

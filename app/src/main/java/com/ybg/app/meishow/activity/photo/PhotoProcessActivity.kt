@@ -13,7 +13,7 @@ import android.view.View
 import android.widget.RadioGroup
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.base.constants.AppConstant
 import com.ybg.app.base.constants.IntentExtra
 import com.ybg.app.base.utils.AppUtil

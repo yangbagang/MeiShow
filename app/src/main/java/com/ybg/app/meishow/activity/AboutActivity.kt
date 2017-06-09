@@ -2,7 +2,7 @@ package com.ybg.app.meishow.activity
 
 import android.content.Context
 import android.content.Intent
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.base.utils.AppUtil
 import com.ybg.app.meishow.R
 import kotlinx.android.synthetic.main.activity_about.*

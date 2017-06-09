@@ -11,7 +11,7 @@ import android.widget.TextView
 
 import com.ybg.app.base.utils.LogUtil
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.adapter.PlaceAdapter
 import com.ybg.app.meishow.app.ShowApplication
 

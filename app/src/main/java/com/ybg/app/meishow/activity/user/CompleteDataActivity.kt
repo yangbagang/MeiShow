@@ -9,7 +9,7 @@ import com.ybg.app.base.utils.DateUtil
 import com.ybg.app.base.utils.LogUtil
 import com.ybg.app.meishow.R
 import com.ybg.app.meishow.activity.MainActivity
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.app.ShowApplication
 import com.ybg.app.base.constants.IntentExtra
 import com.ybg.app.base.http.Model.Progress

@@ -15,7 +15,7 @@ import com.ybg.app.base.bean.JSonResultBean
 import com.ybg.app.base.bean.SystemLabel
 import com.ybg.app.base.utils.DateUtil
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.adapter.InterestGridViewAdapter
 import com.ybg.app.meishow.adapter.MyInfoAdapter
 import com.ybg.app.base.constants.AppConstant

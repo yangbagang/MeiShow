@@ -11,7 +11,7 @@ import com.ybg.app.base.utils.AppUtil
 import com.ybg.app.meishow.R
 import com.ybg.app.meishow.activity.AgreementActivity
 import com.ybg.app.meishow.activity.MainActivity
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.base.constants.AppConstant
 import com.ybg.app.base.utils.FileUtils
 import com.ybg.app.base.utils.ToastUtil

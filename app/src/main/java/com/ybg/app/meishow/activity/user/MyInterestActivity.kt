@@ -11,7 +11,7 @@ import android.widget.GridView
 
 import com.ybg.app.base.bean.SystemLabel
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.adapter.LabelAdapter
 
 import java.io.Serializable

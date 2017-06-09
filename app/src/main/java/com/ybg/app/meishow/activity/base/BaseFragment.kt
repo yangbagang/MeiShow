@@ -13,6 +13,8 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.ybg.app.base.constants.MessageEvent
 import com.ybg.app.base.http.OkHttpProxy
+import com.ybg.app.base.utils.ToastUtil
+import com.ybg.app.meishow.app.ShowApplication
 
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -25,6 +27,8 @@ abstract class BaseFragment : Fragment() {
     protected var mRootView: View? = null
     protected var mPageNum = 0//下拉刷新和上拉加载时翻页的记录
     protected var mEventBus: EventBus? = null
+
+    protected val mApplication = ShowApplication.instance!!
 
     /**
      * 设置布局文件
@@ -75,4 +79,9 @@ abstract class BaseFragment : Fragment() {
     open fun onEvent(event: MessageEvent) {
 
     }
+
+    protected fun showToast(msg: String) {
+        ToastUtil.show(mApplication, msg)
+    }
+
 }

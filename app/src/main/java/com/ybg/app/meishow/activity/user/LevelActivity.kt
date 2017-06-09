@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.activity.user.fragment.BeautyLevelFragment
 import com.ybg.app.meishow.activity.user.fragment.BeautyLevelPowerFragment
 import com.ybg.app.meishow.activity.user.fragment.BeautySecretFragment

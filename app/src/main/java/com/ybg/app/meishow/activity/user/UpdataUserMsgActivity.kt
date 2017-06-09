@@ -8,7 +8,7 @@ import android.widget.TextView
 
 import com.rengwuxian.materialedittext.MaterialEditText
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.app.ShowApplication
 
 class UpdataUserMsgActivity : BaseActivity() {

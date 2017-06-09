@@ -9,7 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.base.utils.ToastUtil
 import com.ybg.app.meishow.app.ShowApplication
 import com.ybg.app.meishow.view.VideoRecorderView.OnRecordFinishListener

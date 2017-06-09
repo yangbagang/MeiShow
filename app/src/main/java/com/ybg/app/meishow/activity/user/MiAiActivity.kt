@@ -11,7 +11,7 @@ import com.ybg.app.base.bean.BangItem
 import com.ybg.app.base.bean.JSonResultBean
 
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.adapter.MiAiAdapter
 import com.ybg.app.meishow.app.ShowApplication
 import com.ybg.app.base.http.SendRequest

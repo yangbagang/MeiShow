@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseFragment
+import com.ybg.app.meishow.activity.base.BaseFragment
 
 class BeautySecretFragment : BaseFragment() {
 

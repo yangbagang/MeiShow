@@ -14,7 +14,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.base.bean.BangItem
 import com.ybg.app.base.bean.JSonResultBean
 import com.ybg.app.base.bean.UserBase

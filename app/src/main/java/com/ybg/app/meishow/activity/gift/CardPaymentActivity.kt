@@ -5,7 +5,7 @@ import android.content.Intent
 import com.pingplusplus.android.Pingpp
 import com.ybg.app.base.bean.JSonResultBean
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.base.constants.IntentExtra
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback

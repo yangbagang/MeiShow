@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseFragment
+import com.ybg.app.meishow.activity.base.BaseFragment
 
 import java.util.ArrayList
 

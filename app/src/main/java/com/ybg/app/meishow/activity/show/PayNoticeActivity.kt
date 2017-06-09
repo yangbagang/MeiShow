@@ -9,7 +9,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import com.ybg.app.base.bean.JSonResultBean
 import com.ybg.app.base.bean.YueShow
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.activity.gift.CardListActivity
 import com.ybg.app.base.constants.IntentExtra
 import com.ybg.app.base.http.HttpUrl

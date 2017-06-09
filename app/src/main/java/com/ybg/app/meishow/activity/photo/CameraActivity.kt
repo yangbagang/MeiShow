@@ -18,7 +18,7 @@ import android.view.View
 import android.view.animation.ScaleAnimation
 import android.widget.RelativeLayout
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.base.constants.AppConstant
 import com.ybg.app.base.constants.MessageHandler
 import com.ybg.app.base.utils.*

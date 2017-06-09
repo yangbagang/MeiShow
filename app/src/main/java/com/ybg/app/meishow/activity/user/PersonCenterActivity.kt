@@ -24,7 +24,7 @@ import com.ybg.app.base.utils.GsonUtil
 import com.ybg.app.base.utils.MeiLiUtil
 import com.ybg.app.meishow.R
 import com.ybg.app.meishow.activity.MainActivity
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.adapter.HomeShowAdapter
 import com.ybg.app.meishow.app.ShowApplication
 import com.ybg.app.base.http.HttpUrl

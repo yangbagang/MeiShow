@@ -8,7 +8,7 @@ import com.google.gson.reflect.TypeToken
 import com.ybg.app.base.bean.BangItem
 import com.ybg.app.base.bean.JSonResultBean
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseFragment
+import com.ybg.app.meishow.activity.base.BaseFragment
 import com.ybg.app.meishow.adapter.BangAdapter
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback

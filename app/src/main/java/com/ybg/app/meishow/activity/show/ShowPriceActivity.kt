@@ -2,7 +2,7 @@ package com.ybg.app.meishow.activity.show
 
 import android.os.Bundle
 import android.view.View
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.R
 
 class ShowPriceActivity : BaseActivity() {

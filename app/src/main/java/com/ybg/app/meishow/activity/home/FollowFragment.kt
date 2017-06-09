@@ -5,7 +5,7 @@ import android.os.Message
 import android.widget.ListView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.ybg.app.base.base.BaseFragment
+import com.ybg.app.meishow.activity.base.BaseFragment
 import com.ybg.app.base.bean.JSonResultBean
 import com.ybg.app.base.bean.YueShow
 import com.ybg.app.base.http.SendRequest

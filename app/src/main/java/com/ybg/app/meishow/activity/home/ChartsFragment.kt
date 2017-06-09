@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.RelativeLayout
 import com.google.gson.reflect.TypeToken
-import com.ybg.app.base.base.BaseFragment
+import com.ybg.app.meishow.activity.base.BaseFragment
 import com.ybg.app.base.bean.BangItem
 import com.ybg.app.base.bean.JSonResultBean
 import com.ybg.app.meishow.R

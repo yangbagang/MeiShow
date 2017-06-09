@@ -18,7 +18,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.ybg.app.base.app.YbgAPP
 import com.ybg.app.base.bean.JSonResultBean
 import com.ybg.app.base.bean.UserBase
 import com.ybg.app.base.bean.UserInfo
@@ -27,6 +26,7 @@ import com.ybg.app.base.http.OkHttpProxy
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.JsonCallback
 import com.ybg.app.base.utils.ToastUtil
+import com.ybg.app.meishow.app.ShowApplication
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -37,7 +37,7 @@ abstract class BaseActivity : AppCompatActivity() {
     protected var mGson: Gson? = null
     private val mRootView: View? = null
 
-    protected var mApplication: YbgAPP = application as YbgAPP
+    protected val mApplication = ShowApplication.instance!!
 
     protected var mPageNum: Int = 0//下拉刷新和上拉加载时翻页的记录
     protected var mEventBus: EventBus? = null

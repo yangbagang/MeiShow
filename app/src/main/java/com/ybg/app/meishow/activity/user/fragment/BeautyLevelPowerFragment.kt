@@ -1,7 +1,7 @@
 package com.ybg.app.meishow.activity.user.fragment
 
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseFragment
+import com.ybg.app.meishow.activity.base.BaseFragment
 
 class BeautyLevelPowerFragment : BaseFragment() {
 

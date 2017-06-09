@@ -6,7 +6,7 @@ import android.content.Intent
 import android.provider.MediaStore
 import android.view.View
 import com.ybg.app.meishow.R
-import com.ybg.app.base.base.BaseActivity
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.activity.photo.CameraActivity
 import com.ybg.app.meishow.activity.photo.PhotoProcessActivity
 import com.ybg.app.meishow.activity.video.VideoProcessActivity
