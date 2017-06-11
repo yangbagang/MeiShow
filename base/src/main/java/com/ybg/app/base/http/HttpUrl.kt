@@ -38,8 +38,6 @@ object HttpUrl {
     //用户爱好
     private val GET_USER_LABEL = "/userLabel/list"
     private val UPDATE_USER_LABEL = "/userLabel/update"
-    //第三方用户登录
-    private val UM_USER_LOGIN = "/userBase/umLogin"
     private val UPDATE_CLIENT_ID = "/userBase/updateAppToken"
     /*美秀列表*/
     private val LIVE_LIST = "/ruiShow/list"
@@ -52,11 +50,6 @@ object HttpUrl {
     private val SHOW_SHARE_LIST = "/showShare/list"
     /*新建美秀*/
     private val CREATE_LIVE = "/ruiShow/create"
-    private val CREATE_LIVE2 = "/ruiShow/createLive"
-    private val CLOSE_LIVE = "/ruiShow/closeLive"
-    private val LIVE_END = "/ruiShow/liveDetail"
-    private val SHOW_LIVE = "/ruiShow/showLive"
-    private val LEAVE_LIVE = "/ruiShow/leaveLive"
     private val APPEND_FILES = "/showFile/addFiles"
     private val APPEND_EVENTS = "/ruiEvent/appendEvent"
     private val LIVE_DETAIL = "/ruiShow/detail"
@@ -66,8 +59,6 @@ object HttpUrl {
     private val ZAN_LIVE = "/ruiShow/zan"
     /*分享*/
     private val SHARE_LIVE = "/ruiShow/share"
-    /*直播中发送消息*/
-    private val SEND_LIVE_MSG = "/ruiShow/sendLiveMsg"
     /*美秀板块*/
     private val CATEGORY_LIST = "/ruiBar/list"
     /*活动主题*/

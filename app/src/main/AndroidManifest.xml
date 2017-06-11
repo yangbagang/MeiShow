@@ -64,10 +64,6 @@
         <activity
             android:name=".activity.user.CompleteDataActivity"
             android:screenOrientation="portrait" />
-        <!-- 用户等级，用户资料之一。 -->
-        <activity
-            android:name=".activity.user.LevelActivity"
-            android:screenOrientation="portrait" />
         <!-- 用户登录主界面。 -->
         <activity
             android:name=".activity.user.LoginActivity"
