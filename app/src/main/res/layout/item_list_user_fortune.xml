@@ -61,7 +61,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/px_60"
             android:layout_centerVertical="true"
-            android:text="美票"
+            android:text="秀币"
             android:textColor="#999999"
             android:textSize="@dimen/px_text_24"/>
         <TextView

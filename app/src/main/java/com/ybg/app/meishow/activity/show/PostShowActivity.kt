@@ -43,7 +43,7 @@ abstract class PostShowActivity : BaseActivity() {
                 && resultCode == ShowPriceActivity.SHOW_PRICE_REQUEST_CODE) {
             if (data != null) {
                 price = data.getIntExtra(ShowPriceActivity.SHOW_PRICE, 0)
-                tv_show_price.text = String.format("%d美票", price)
+                tv_show_price.text = String.format("%d秀币", price)
             }
         }
     }

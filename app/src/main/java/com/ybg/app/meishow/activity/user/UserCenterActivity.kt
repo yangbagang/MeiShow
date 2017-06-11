@@ -24,11 +24,9 @@ import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.parser.OkStringParser
 import com.ybg.app.base.utils.GsonUtil
-import com.ybg.app.base.utils.MeiLiUtil
 import com.ybg.app.meishow.R
 import com.ybg.app.meishow.adapter.HomeShowAdapter
 import com.ybg.app.meishow.utils.ImageLoaderUtils
-import com.ybg.app.meishow.utils.MeiLiImgUtil
 import com.ybg.app.meishow.view.CircleImageView
 import com.ybg.app.meishow.view.bgarefresh.BGANormalRefreshViewHolder
 import com.ybg.app.meishow.view.bgarefresh.BGARefreshLayout
@@ -46,12 +44,8 @@ class UserCenterActivity : BaseActivity(), View.OnClickListener {
 
     private var rl_user_wall: RelativeLayout? = null//照片背景
     private var iv_user_logo: CircleImageView? = null//用户头像
-    private var iv_level: ImageView? = null//用户等级图片
     private var tv_nickname: TextView? = null
-    private var tv_level: TextView? = null
-    private var tv_level_name: TextView? = null
     private var tv_sign_name: TextView? = null// 昵称 用户等级 用户等级名称 用户的个性签名
-    private var tv_meilizhi: TextView? = null
     private var tv_care: TextView? = null
     private var tv_fans: TextView? = null//美力值 关注 粉丝
     private var iv_miai_1: CircleImageView? = null
@@ -61,7 +55,6 @@ class UserCenterActivity : BaseActivity(), View.OnClickListener {
     private var rv_miai_2: RelativeLayout? = null
     private var rv_miai_3: RelativeLayout? = null
     private var tv_go_aimi: TextView? = null//跳转到密爱页面
-    private var rl_user_level: RelativeLayout? = null//等级页面
 
     private var userBase: UserBase? = null
 
@@ -137,11 +130,7 @@ class UserCenterActivity : BaseActivity(), View.OnClickListener {
         rl_user_wall = headview.findViewById(R.id.rl_user_wall) as RelativeLayout
         iv_user_logo = headview.findViewById(R.id.iv_user_logo) as CircleImageView
         tv_nickname = headview.findViewById(R.id.tv_nickname) as TextView
-        iv_level = headview.findViewById(R.id.iv_level) as ImageView
-        tv_level = headview.findViewById(R.id.tv_level) as TextView
-        tv_level_name = headview.findViewById(R.id.tv_level_name) as TextView
         tv_sign_name = headview.findViewById(R.id.tv_sign_name) as TextView
-        tv_meilizhi = headview.findViewById(R.id.tv_meilizhi) as TextView
         tv_care = headview.findViewById(R.id.tv_care) as TextView
         tv_fans = headview.findViewById(R.id.tv_fans) as TextView
         iv_miai_1 = headview.findViewById(R.id.iv_mi_ai_first) as CircleImageView
@@ -151,9 +140,7 @@ class UserCenterActivity : BaseActivity(), View.OnClickListener {
         rv_miai_2 = headview.findViewById(R.id.rl_mi_ai_second) as RelativeLayout
         rv_miai_3 = headview.findViewById(R.id.rl_mi_ai_third) as RelativeLayout
         tv_go_aimi = headview.findViewById(R.id.tv_go_mi_ai) as TextView
-        rl_user_level = headview.findViewById(R.id.rl_user_level) as RelativeLayout
         tv_go_aimi!!.setOnClickListener(this)
-        rl_user_level!!.setOnClickListener(this)
     }
 
     override fun onStart() {
@@ -182,12 +169,6 @@ class UserCenterActivity : BaseActivity(), View.OnClickListener {
         tv_nickname?.text = userBase.nickName
         //签名
         tv_sign_name?.text = userBase.ymMemo
-        //级别
-        val num = MeiLiUtil.getLevelNum(userBase.ml)
-        tv_level_name?.text = MeiLiUtil.getLevelName(num)
-        tv_level?.text = "LV$num"
-        iv_level?.setImageResource(MeiLiImgUtil.getImgId(num))
-        tv_meilizhi?.text = "${userBase.ml}"
         //粉丝数
         loadFansNum(userBase)
         //关注数
@@ -217,7 +198,6 @@ class UserCenterActivity : BaseActivity(), View.OnClickListener {
     //@OnClick({R.id.rl_dynamic, R.id.rl_join_Data, R.id.rl_achievement})
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.rl_user_level -> LevelActivity.start(mContext!!)
             R.id.tv_go_mi_ai -> {
                 if (userBase != null) {
                     MiAiActivity.start(mContext!!, userBase!!.id, userBase!!.nickName)

@@ -18,13 +18,11 @@ import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.parser.OkStringParser
 import com.ybg.app.base.picasso.Picasso
 import com.ybg.app.base.utils.DateUtil
-import com.ybg.app.base.utils.MeiLiUtil
 import com.ybg.app.base.utils.ToastUtil
 import com.ybg.app.meishow.R
 import com.ybg.app.meishow.activity.show.ShowDetailActivity
 import com.ybg.app.meishow.activity.user.UserCenterActivity
 import com.ybg.app.meishow.app.ShowApplication
-import com.ybg.app.meishow.utils.MeiLiImgUtil
 import com.ybg.app.meishow.view.CircleImageView
 
 /**
@@ -83,7 +81,6 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
         //事件定义
         val commentOnClickListener = BtnCommentOnClickListener(position)
         val zanOnClickListener = BtnZanOnClickListener(viewHolder, position)
-        val transOnClickListener = BtnTransOnClickListener(position)
 
         getAuthorInfo(mList!![position].id!!, viewHolder)
         //填充美秀信息
@@ -126,7 +123,6 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
 
     private fun loadInfo(viewHolder: ViewHolder, userBase: UserBase) {
         /**用户信息 */
-        viewHolder.tv_meilizhi!!.text = String.format("美力值 + %d", userBase.ml)
         if (TextUtils.isEmpty(userBase.nickName)) {
             viewHolder.tv_username!!.text = userBase.ymCode
         } else {
@@ -178,8 +174,6 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
         //用户信息
         viewHolder.iv_user_photo = convertView.findViewById(R.id.iv_user_logo) as CircleImageView
         viewHolder.tv_username = convertView.findViewById(R.id.tv_user_name) as TextView
-        viewHolder.iv_level_img = convertView.findViewById(R.id.iv_level_img) as ImageView
-        viewHolder.tv_meilizhi = convertView.findViewById(R.id.tv_meilizhi) as TextView
         viewHolder.tv_time = convertView.findViewById(R.id.tv_time) as TextView
         viewHolder.btn_care = convertView.findViewById(R.id.btn_care) as Button
         //用户发布文字
@@ -250,8 +244,6 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
         internal var ll_photo_live_flag: LinearLayout? = null//图片或者直播标志
         internal var iv_user_photo: CircleImageView? = null//用户头像
         internal var tv_username: TextView? = null//用户昵称
-        internal var iv_level_img: ImageView? = null//用户等级图片
-        internal var tv_meilizhi: TextView? = null//用户美力值
         internal var tv_time: TextView? = null//用户发布时间
         internal var btn_care: Button? = null//关注
         internal var tv_content: TextView? = null//发布文字内容
@@ -326,12 +318,6 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
                                     viewHolder.tv_parise!!.text = "${mList!![mPosition].zanNum + 1}"
                                     viewHolder.tv_parise!!.text = "${mList!![mPosition].zanNum + 1}"
                                     viewHolder.iv_parise!!.isClickable = false
-                                    //刷新美力值，获取时间，等级。
-                                    val meili = viewHolder.tv_meilizhi!!.text.toString().toInt()
-                                    viewHolder.tv_meilizhi!!.text = "${meili + 1}"
-                                    viewHolder.tv_time!!.text = "刚刚"
-                                    viewHolder.iv_level_img!!.setImageResource(MeiLiImgUtil
-                                            .getImgId(MeiLiUtil.getLevelNum(meili)))
                                 }
                             }
 
@@ -341,17 +327,6 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
 
                         })
             }
-        }
-    }
-
-    /**
-     * 转发点击事件
-     */
-    private inner class BtnTransOnClickListener(internal var mPosition: Int) : View.OnClickListener {
-
-        override fun onClick(v: View) {
-            //TODO
-            //ToastUtil.show("转发 :" + mPosition)
         }
     }
 

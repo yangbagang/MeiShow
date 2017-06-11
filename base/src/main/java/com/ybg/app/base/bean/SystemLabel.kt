@@ -5,7 +5,6 @@ import java.io.Serializable
 /**
  * Created by yangbagang on 2016/10/28.
  */
-
 class SystemLabel : Serializable {
 
     var labelName: String = ""

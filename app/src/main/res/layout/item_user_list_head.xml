@@ -32,84 +32,22 @@
             android:textColor="@color/white"
             android:textSize="@dimen/px_24" />
 
-        <RelativeLayout
-            android:id="@+id/rl_user_level"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_nickname"
-            android:layout_marginTop="@dimen/px_14"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/iv_level"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_level_star" />
-
-            <TextView
-                android:id="@+id/tv_level"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/px_8"
-                android:layout_toRightOf="@id/iv_level"
-                android:gravity="center_vertical"
-                android:text="LV1"
-                android:textColor="@color/color_7dcf2c"
-                android:textSize="@dimen/px_24" />
-
-            <TextView
-                android:id="@+id/tv_level_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/px_8"
-                android:layout_toRightOf="@id/tv_level"
-                android:text="闪亮新星"
-                android:textColor="#fffc0b"
-                android:textSize="@dimen/px_24" />
-        </RelativeLayout>
-
         <TextView
             android:id="@+id/tv_sign_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rl_user_level"
+            android:layout_below="@+id/tv_nickname"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/px_48"
             android:text=""
             android:textColor="@color/white"
-            android:textSize="@dimen/px_24" />
+            android:textSize="@dimen/px_text_24" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_88"
         android:background="@color/white">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px_28"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="美力值:"
-                android:textColor="@color/color_f84f21"
-                android:textSize="@dimen/px_24" />
-
-            <TextView
-                android:id="@+id/tv_meilizhi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/px_16"
-                android:text="0"
-                android:textColor="@color/color_f84f21"
-                android:textSize="@dimen/px_24" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

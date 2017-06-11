@@ -56,43 +56,6 @@
             android:inputType="textMultiLine"
             android:minLines="1"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_68"
-            android:layout_marginLeft="@dimen/px_32"
-            android:layout_marginRight="@dimen/px_30"
-            android:layout_marginTop="@dimen/px_20"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:id="@+id/iv_emotion_entry"
-                android:layout_width="@dimen/px_50"
-                android:layout_height="@dimen/px_50"
-                android:scaleType="fitXY"
-                android:src="@mipmap/face_default"/>
-
-            <ImageView
-                android:id="@+id/iv_location_entry"
-                android:layout_width="@dimen/px_50"
-                android:layout_height="@dimen/px_50"
-                android:layout_marginLeft="@dimen/px_20"
-                android:scaleType="fitXY"
-                android:src="@mipmap/location_default"/>
-
-            <TextView
-                android:id="@+id/et_user_location"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="@dimen/px_text_24"
-                android:textColor="#4d5359"/>
-
-            <TextView
-                android:id="@+id/tv_location_length"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0/52"/>
-        </LinearLayout>
     </LinearLayout>
 
     <View
@@ -116,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/px_20"
-            android:text="芝麻开门"
+            android:text="美秀价格"
             android:textSize="@dimen/px_text_30"
             android:textColor="#545866"
             android:onClick="selectShowPrice"/>
@@ -135,38 +98,6 @@
             android:layout_marginRight="@dimen/px_30"
             android:src="@mipmap/ic_gray_right_arrow"/>
 
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px_1"
-        android:background="#d3d9df"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px_82"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:layout_width="@dimen/px_50"
-            android:layout_height="@dimen/px_50"
-            android:layout_marginLeft="@dimen/px_34"
-            android:src="@mipmap/fabu_yaoyue"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/px_20"
-            android:layout_weight="1"
-            android:text="发布邀约"
-            android:textSize="@dimen/px_text_30"
-            android:textColor="#545866"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/px_30"
-            android:src="@mipmap/ic_gray_right_arrow"/>
     </LinearLayout>
 
     <View

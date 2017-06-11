@@ -36,7 +36,7 @@ class PayNoticeActivity : BaseActivity() {
             val showItem = intent.getSerializableExtra("show")
             if (showItem is YueShow) {
                 show = showItem
-                tv_price_notice.text = String.format("%d 美票", show.price)
+                tv_price_notice.text = String.format("%d 秀币", show.price)
                 setImageProcess(show.thumbnail)
 
                 tv_pay_notice.setOnClickListener {

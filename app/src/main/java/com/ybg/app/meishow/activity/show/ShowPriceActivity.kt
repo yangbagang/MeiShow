@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.R
+import kotlinx.android.synthetic.main.activity_show_price.*
 
 class ShowPriceActivity : BaseActivity() {
 
@@ -17,7 +18,7 @@ class ShowPriceActivity : BaseActivity() {
     }
 
     override fun setUpView() {
-        setCustomTitle("芝麻开门")
+        setCustomTitle("美秀价格设定")
     }
 
     override fun init() {
@@ -26,14 +27,28 @@ class ShowPriceActivity : BaseActivity() {
 
     fun onClick(v: View) {
         when(v.id) {
-            R.id.tv_show_38 -> {
-                setPrice(38)
+            R.id.tv_show_10 -> {
+                setPrice(10)
             }
-            R.id.tv_show_58 -> {
-                setPrice(58)
+            R.id.tv_show_20 -> {
+                setPrice(20)
             }
-            R.id.tv_show_88 -> {
-                setPrice(88)
+            R.id.tv_show_30 -> {
+                setPrice(30)
+            }
+            R.id.tv_show_40 -> {
+                setPrice(40)
+            }
+            R.id.tv_show_50 -> {
+                setPrice(50)
+            }
+            R.id.btn_show_price -> {
+                try {
+                    val price = et_show_other.text
+                    setPrice(price.toString().toInt())
+                } catch (e: Exception) {
+                    setPrice(0)
+                }
             }
         }
     }

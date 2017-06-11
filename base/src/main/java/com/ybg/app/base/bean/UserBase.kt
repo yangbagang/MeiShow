@@ -9,8 +9,8 @@ import java.io.Serializable
 class UserBase : Serializable {
 
     var id = 0L
-    var ymCode = "0"//悦美号，唯一，非空，自动生成，不可修改。
-    var ymUser = ""//悦美账号，通常是手机号
+    var ymCode = "0"//美秀号，唯一，非空，自动生成，不可修改。
+    var ymUser = ""//美秀账号，通常是手机号
     var nickName = "未填写"//呢称，可空，非唯一。
     var avatar = ""//头像
     var avatarBG = ""//头像背景

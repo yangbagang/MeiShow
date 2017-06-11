@@ -12,12 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/px_36"
         android:layout_marginLeft="@dimen/px_40"
-        android:text="请选择门票"
+        android:text="请选择价格"
         android:textSize="@dimen/px_text_30"
         android:textColor="#4d5359" />
 
     <TextView
-        android:id="@+id/tv_show_38"
+        android:id="@+id/tv_show_10"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_88"
         android:layout_marginLeft="@dimen/px_40"
@@ -25,13 +25,41 @@
         android:layout_marginTop="@dimen/px_36"
         android:background="@drawable/shape_gray_border"
         android:gravity="center"
-        android:text="38美票"
+        android:text="10秀币"
         android:textColor="#de4942"
         android:textSize="@dimen/px_text_30"
         android:onClick="onClick"/>
 
     <TextView
-        android:id="@+id/tv_show_58"
+        android:id="@+id/tv_show_20"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_88"
+        android:layout_marginLeft="@dimen/px_40"
+        android:layout_marginRight="@dimen/px_40"
+        android:layout_marginTop="@dimen/px_36"
+        android:background="@drawable/shape_gray_border"
+        android:gravity="center"
+        android:text="20秀币"
+        android:textColor="#de4942"
+        android:textSize="@dimen/px_text_30"
+        android:onClick="onClick"/>
+
+    <TextView
+        android:id="@+id/tv_show_30"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_88"
+        android:layout_marginLeft="@dimen/px_40"
+        android:layout_marginRight="@dimen/px_40"
+        android:layout_marginTop="@dimen/px_36"
+        android:background="@drawable/shape_gray_border"
+        android:gravity="center"
+        android:text="30秀币"
+        android:textColor="#de4942"
+        android:textSize="@dimen/px_text_30"
+        android:onClick="onClick"/>
+
+    <TextView
+        android:id="@+id/tv_show_40"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_88"
         android:layout_marginLeft="@dimen/px_40"
@@ -39,13 +67,13 @@
         android:layout_marginTop="@dimen/px_40"
         android:background="@drawable/shape_gray_border"
         android:gravity="center"
-        android:text="58美票"
+        android:text="40秀币"
         android:textColor="#de4942"
         android:textSize="@dimen/px_text_30"
         android:onClick="onClick"/>
 
     <TextView
-        android:id="@+id/tv_show_88"
+        android:id="@+id/tv_show_50"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_88"
         android:layout_marginLeft="@dimen/px_40"
@@ -53,8 +81,40 @@
         android:layout_marginTop="@dimen/px_40"
         android:background="@drawable/shape_gray_border"
         android:gravity="center"
-        android:text="88美票"
+        android:text="50秀币"
         android:textColor="#de4942"
         android:textSize="@dimen/px_text_30"
         android:onClick="onClick"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_88"
+        android:layout_marginLeft="@dimen/px_40"
+        android:layout_marginRight="@dimen/px_40"
+        android:layout_marginTop="@dimen/px_40"
+        android:background="@drawable/shape_gray_border"
+        android:gravity="center">
+        <EditText
+            android:id="@+id/et_show_other"
+            android:layout_width="@dimen/px_66"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="0"
+            android:text="0"
+            android:inputType="number"
+            android:textColor="#de4942"
+            android:textSize="@dimen/px_text_30"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="秀币"
+            android:textColor="#de4942"
+            android:textSize="@dimen/px_text_30"/>
+        <Button
+            android:id="@+id/btn_show_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:background="@drawable/action_btn"/>
+    </LinearLayout>
 </LinearLayout>
