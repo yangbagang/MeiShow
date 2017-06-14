@@ -333,13 +333,19 @@ object SendRequest {
         }
     }
 
-    fun getRuiMeiBang(tag: Context, beginTime: String, endTime: String, pageNum: Int, pageSize: Int,
+    /**
+     * 3.1 活跃榜
+     */
+    fun getHuoYueBang(tag: Context, beginTime: String, endTime: String, pageNum: Int, pageSize: Int,
                       callback: OkCallback<*>) {
         val params = mapOf<String, String>("beginTime" to beginTime, "endTime" to endTime,
                 "pageNum" to "$pageNum", "pageSize" to "$pageSize")
-        OkHttpProxy.post(HttpUrl.ruiMeiBang, tag, params, callback)
+        OkHttpProxy.post(HttpUrl.huoYueBang, tag, params, callback)
     }
 
+    /**
+     * 3.2 人气榜
+     */
     fun getRenQiBang(tag: Context, beginTime: String, endTime: String, pageNum: Int, pageSize: Int,
                      callback: OkCallback<*>) {
         val params = mapOf<String, String>("beginTime" to beginTime, "endTime" to endTime,
@@ -347,11 +353,24 @@ object SendRequest {
         OkHttpProxy.post(HttpUrl.renQiBang, tag, params, callback)
     }
 
-    fun getHuoLiBang(tag: Context, beginTime: String, endTime: String, pageNum: Int, pageSize: Int,
+    /**
+     * 3.3 收入榜
+     */
+    fun getShouRuBang(tag: Context, beginTime: String, endTime: String, pageNum: Int, pageSize: Int,
                      callback: OkCallback<*>) {
         val params = mapOf<String, String>("beginTime" to beginTime, "endTime" to endTime,
                 "pageNum" to "$pageNum", "pageSize" to "$pageSize")
-        OkHttpProxy.post(HttpUrl.huoLiBang, tag, params, callback)
+        OkHttpProxy.post(HttpUrl.shouRuBang, tag, params, callback)
+    }
+
+    /**
+     * 3.4 豪气榜
+     */
+    fun getHaoQiBang(tag: Context, beginTime: String, endTime: String, pageNum: Int, pageSize: Int,
+                      callback: OkCallback<*>) {
+        val params = mapOf<String, String>("beginTime" to beginTime, "endTime" to endTime,
+                "pageNum" to "$pageNum", "pageSize" to "$pageSize")
+        OkHttpProxy.post(HttpUrl.shouRuBang, tag, params, callback)
     }
 
     fun getMiAiBang(tag: Context, beginTime: String, endTime: String, pageNum: Int, pageSize: Int,

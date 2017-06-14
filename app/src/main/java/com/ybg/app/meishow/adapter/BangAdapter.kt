@@ -83,63 +83,17 @@ class BangAdapter(private var mContext: Activity): BaseAdapter() {
 
         val bangItem = getItem(position)
         //头像
+        viewHolder.tv_pm_name!!.text = bangItem.nickName
         val avatar = HttpUrl.getImageUrl(bangItem.avatar)
         ImageLoaderUtils.instance.loadBitmap(viewHolder.ci_pm!!, avatar)
         //积分名称及积分值
         viewHolder.tv_score_name!!.text = scoreName
         viewHolder.tv_pm_score!!.text = "${bangItem.scoreValue}"
 
-        //加载蜜爱
-        loadMiAi(bangItem.user_id, viewHolder)
-
         return convertView!!
     }
 
-    private fun loadMiAi(userId: Long, viewHolder: ViewHolder) {
-        SendRequest.getMiAiBang(mContext, "2016-01-01", "2999-12-31", 1, 3, userId, object :
-                OkCallback<String>(OkStringParser()){
 
-            override fun onSuccess(code: Int, response: String) {
-                val jsonBean = JSonResultBean.fromJSON(response)
-                if (jsonBean != null && jsonBean.isSuccess) {
-                    val list = GsonUtil.createGson().fromJson<List<BangItem>>(jsonBean.data, object :
-                            TypeToken<List<BangItem>>(){}.type)
-                    if (list != null) {
-                        if (list.isNotEmpty()) {
-                            val first = list.first()
-                            ImageLoaderUtils.instance.loadBitmap(viewHolder.iv_mi_0!!, HttpUrl.getImageUrl
-                            (first.avatar))
-                        } else {
-                            viewHolder.iv_mi_0!!.visibility = View.GONE
-                        }
-                        if (list.size > 1) {
-                            val second = list[1]
-                            ImageLoaderUtils.instance.loadBitmap(viewHolder.iv_mi_1!!, HttpUrl.getImageUrl
-                            (second.avatar))
-                        } else {
-                            viewHolder.iv_mi_1!!.visibility = View.GONE
-                        }
-                        if (list.size > 2) {
-                            val third = list[2]
-                            ImageLoaderUtils.instance.loadBitmap(viewHolder.iv_mi_2!!, HttpUrl.getImageUrl
-                            (third.avatar))
-                        } else {
-                            viewHolder.iv_mi_2!!.visibility = View.GONE
-                        }
-                    }
-                } else {
-                    jsonBean?.let {
-                        ToastUtil.show(ShowApplication.instance!!, jsonBean.message)
-                    }
-                }
-            }
-
-            override fun onFailure(e: Throwable) {
-                //ToastUtil.show("获取美力榜失败")
-            }
-
-        })
-    }
 
     private fun initViewHolder(viewHolder: ViewHolder, convertView: View) {
         viewHolder.iv_pm = convertView.findViewById(R.id.iv_pm) as ImageView?
@@ -148,10 +102,6 @@ class BangAdapter(private var mContext: Activity): BaseAdapter() {
         viewHolder.tv_pm_name = convertView.findViewById(R.id.tv_pm_name) as TextView?
         viewHolder.tv_score_name = convertView.findViewById(R.id.tv_score_name) as TextView?
         viewHolder.tv_pm_score = convertView.findViewById(R.id.tv_pm_score) as TextView?
-
-        viewHolder.iv_mi_0 = convertView.findViewById(R.id.iv_mi_0) as ImageView?
-        viewHolder.iv_mi_1 = convertView.findViewById(R.id.iv_mi_1) as ImageView?
-        viewHolder.iv_mi_2 = convertView.findViewById(R.id.iv_mi_2) as ImageView?
 
         convertView.tag = viewHolder
     }
@@ -163,8 +113,5 @@ class BangAdapter(private var mContext: Activity): BaseAdapter() {
         internal var tv_pm_name: TextView? = null
         internal var tv_score_name: TextView? = null
         internal var tv_pm_score: TextView? = null
-        internal var iv_mi_0: ImageView? = null
-        internal var iv_mi_1: ImageView? = null
-        internal var iv_mi_2: ImageView? = null
     }
 }

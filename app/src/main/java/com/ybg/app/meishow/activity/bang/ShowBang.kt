@@ -15,8 +15,8 @@ import java.util.*
  */
 class ShowBang : BaseActivity() {
 
-    private var type: Int = 1
-    private val titles = arrayOf("中华悦美女神", "美力榜", "活力新人王", "人气新人王", "豪气榜")
+    private var type: Int = 0
+    private val titles = arrayOf("活跃榜", "人气榜", "收入榜", "豪气榜")
 
     private val mFragment = ArrayList<Fragment>()
     private var adapter: ContentViewPagerAdapter? = null

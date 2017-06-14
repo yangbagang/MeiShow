@@ -21,10 +21,9 @@ import kotlinx.android.synthetic.main.fragment_charts.*
  */
 class ChartsFragment : BaseFragment() {
 
-    private lateinit var zhongHuaBang: RelativeLayout
-    private lateinit var meiLiBang: RelativeLayout
+    private lateinit var huoYueBang: RelativeLayout
     private lateinit var renQiBang: RelativeLayout
-    private lateinit var huoLiBang: RelativeLayout
+    private lateinit var shouRuBang: RelativeLayout
     private lateinit var haoQiBang: RelativeLayout
 
     override fun setContentViewId(): Int {
@@ -32,39 +31,34 @@ class ChartsFragment : BaseFragment() {
     }
 
     override fun setUpView() {
-        zhongHuaBang = mRootView!!.findViewById(R.id.rl_zh_bang) as RelativeLayout
-        meiLiBang = mRootView!!.findViewById(R.id.rl_ml_bang) as RelativeLayout
-        renQiBang = mRootView!!.findViewById(R.id.rl_hl_bang) as RelativeLayout
-        huoLiBang = mRootView!!.findViewById(R.id.rl_rq_bang) as RelativeLayout
+        huoYueBang = mRootView!!.findViewById(R.id.rl_hy_bang) as RelativeLayout
+        renQiBang = mRootView!!.findViewById(R.id.rl_rq_bang) as RelativeLayout
+        shouRuBang = mRootView!!.findViewById(R.id.rl_sr_bang) as RelativeLayout
         haoQiBang = mRootView!!.findViewById(R.id.rl_hq_bang) as RelativeLayout
 
-        zhongHuaBang.setOnClickListener {
+        huoYueBang.setOnClickListener {
             ShowBang.start(mContext!!, 0)
         }
-        meiLiBang.setOnClickListener {
+        renQiBang.setOnClickListener {
             ShowBang.start(mContext!!, 1)
         }
-        renQiBang.setOnClickListener {
+        shouRuBang.setOnClickListener {
             ShowBang.start(mContext!!, 2)
         }
-        huoLiBang.setOnClickListener {
-            ShowBang.start(mContext!!, 3)
-        }
         haoQiBang.setOnClickListener {
-            ShowBang.start(mContext!!, 4)
+            ShowBang.start(mContext!!, 3)
         }
     }
 
     override fun init() {
-        loadRuiMeiBang()
-        loadMeiLiBang()
-        loadHuoLiBang()
+        loadHuoYueBang()
         loadRenQiBang()
+        loadShouRuBang()
         loadHaoQiBang()
     }
 
-    fun loadRuiMeiBang() {
-        SendRequest.getRuiMeiBang(mContext!!, "2016-01-01", "2999-12-31", 1, 3, object :
+    fun loadHuoYueBang() {
+        SendRequest.getHuoYueBang(mContext!!, "2016-01-01", "2999-12-31", 1, 3, object :
                 OkCallback<String>(OkStringParser()){
 
             override fun onSuccess(code: Int, response: String) {
@@ -75,24 +69,24 @@ class ChartsFragment : BaseFragment() {
                     if (list != null) {
                         if (list.isNotEmpty()) {
                             val first = list.first()
-                            ImageLoaderUtils.instance.loadBitmap(zh_1_pic, HttpUrl.getImageUrl
+                            ImageLoaderUtils.instance.loadBitmap(hy_1_pic, HttpUrl.getImageUrl
                             (first.avatar))
                         } else {
-                            fl_zh_1.visibility = View.GONE
+                            fl_hy_1.visibility = View.GONE
                         }
                         if (list.size > 1) {
                             val second = list.get(1)
-                            ImageLoaderUtils.instance.loadBitmap(zh_2_pic, HttpUrl.getImageUrl
+                            ImageLoaderUtils.instance.loadBitmap(hy_2_pic, HttpUrl.getImageUrl
                             (second.avatar))
                         } else {
-                            fl_zh_2.visibility = View.GONE
+                            fl_hy_2.visibility = View.GONE
                         }
                         if (list.size > 2) {
                             val third = list.get(2)
-                            ImageLoaderUtils.instance.loadBitmap(zh_3_pic, HttpUrl.getImageUrl
+                            ImageLoaderUtils.instance.loadBitmap(hy_3_pic, HttpUrl.getImageUrl
                             (third.avatar))
                         } else {
-                            fl_zh_3.visibility = View.GONE
+                            fl_hy_3.visibility = View.GONE
                         }
                     }
                 } else {
@@ -109,8 +103,8 @@ class ChartsFragment : BaseFragment() {
         })
     }
 
-    fun loadMeiLiBang() {
-        SendRequest.getRuiMeiBang(mContext!!, "2016-01-01", "2999-12-31", 1, 3, object :
+    fun loadShouRuBang() {
+        SendRequest.getShouRuBang(mContext!!, "2016-01-01", "2999-12-31", 1, 3, object :
                 OkCallback<String>(OkStringParser()){
 
             override fun onSuccess(code: Int, response: String) {
@@ -121,70 +115,24 @@ class ChartsFragment : BaseFragment() {
                     if (list != null) {
                         if (list.isNotEmpty()) {
                             val first = list.first()
-                            ImageLoaderUtils.instance.loadBitmap(ml_1_pic, HttpUrl.getImageUrl
+                            ImageLoaderUtils.instance.loadBitmap(sr_1_pic, HttpUrl.getImageUrl
                             (first.avatar))
                         } else {
-                            fl_ml_1.visibility = View.GONE
+                            fl_sr_1.visibility = View.GONE
                         }
                         if (list.size > 1) {
                             val second = list.get(1)
-                            ImageLoaderUtils.instance.loadBitmap(ml_2_pic, HttpUrl.getImageUrl
+                            ImageLoaderUtils.instance.loadBitmap(sr_2_pic, HttpUrl.getImageUrl
                             (second.avatar))
                         } else {
-                            fl_ml_2.visibility = View.GONE
+                            fl_sr_2.visibility = View.GONE
                         }
                         if (list.size > 2) {
                             val third = list.get(2)
-                            ImageLoaderUtils.instance.loadBitmap(ml_3_pic, HttpUrl.getImageUrl
+                            ImageLoaderUtils.instance.loadBitmap(sr_3_pic, HttpUrl.getImageUrl
                             (third.avatar))
                         } else {
-                            fl_ml_3.visibility = View.GONE
-                        }
-                    }
-                } else {
-                    jsonBean?.let {
-                        showToast(jsonBean.message)
-                    }
-                }
-            }
-
-            override fun onFailure(e: Throwable) {
-                showToast("获取美力榜失败")
-            }
-
-        })
-    }
-
-    fun loadHuoLiBang() {
-        SendRequest.getHuoLiBang(mContext!!, "2016-01-01", "2999-12-31", 1, 3, object :
-                OkCallback<String>(OkStringParser()){
-
-            override fun onSuccess(code: Int, response: String) {
-                val jsonBean = JSonResultBean.fromJSON(response)
-                if (jsonBean != null && jsonBean.isSuccess) {
-                    val list = mGson!!.fromJson<List<BangItem>>(jsonBean.data, object :
-                            TypeToken<List<BangItem>>(){}.type)
-                    if (list != null) {
-                        if (list.isNotEmpty()) {
-                            val first = list.first()
-                            ImageLoaderUtils.instance.loadBitmap(hl_1_pic, HttpUrl.getImageUrl
-                            (first.avatar))
-                        } else {
-                            fl_hl_1.visibility = View.GONE
-                        }
-                        if (list.size > 1) {
-                            val second = list.get(1)
-                            ImageLoaderUtils.instance.loadBitmap(hl_2_pic, HttpUrl.getImageUrl
-                            (second.avatar))
-                        } else {
-                            fl_hl_2.visibility = View.GONE
-                        }
-                        if (list.size > 2) {
-                            val third = list.get(2)
-                            ImageLoaderUtils.instance.loadBitmap(hl_3_pic, HttpUrl.getImageUrl
-                            (third.avatar))
-                        } else {
-                            fl_hl_3.visibility = View.GONE
+                            fl_sr_3.visibility = View.GONE
                         }
                     }
                 } else {
@@ -248,7 +196,7 @@ class ChartsFragment : BaseFragment() {
     }
 
     fun loadHaoQiBang() {
-        SendRequest.getRuiMeiBang(mContext!!, "2016-01-01", "2999-12-31", 1, 3, object :
+        SendRequest.getHaoQiBang(mContext!!, "2016-01-01", "2999-12-31", 1, 3, object :
                 OkCallback<String>(OkStringParser()){
 
             override fun onSuccess(code: Int, response: String) {

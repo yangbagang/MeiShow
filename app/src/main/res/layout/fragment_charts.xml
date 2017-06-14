@@ -19,23 +19,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="中华悦美女神"
+            android:text="活跃榜"
             android:textSize="@dimen/px_text_30"/>
-        <!--中华悦美女神-->
+        <!--活跃榜-->
         <RelativeLayout
-            android:id="@+id/rl_zh_bang"
+            android:id="@+id/rl_hy_bang"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_198"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:background="@mipmap/bang_bg">
             <FrameLayout
-                android:id="@+id/fl_zh_1"
+                android:id="@+id/fl_hy_1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:orientation="vertical">
                 <com.ybg.app.meishow.view.CircleImageView
-                    android:id="@+id/zh_1_pic"
+                    android:id="@+id/hy_1_pic"
                     android:layout_width="@dimen/px_112"
                     android:layout_height="@dimen/px_112"
                     android:layout_gravity="center"
@@ -47,14 +47,14 @@
                     android:src="@mipmap/bang1"/>
             </FrameLayout>
             <FrameLayout
-                android:id="@+id/fl_zh_2"
+                android:id="@+id/fl_hy_2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toLeftOf="@id/fl_zh_1"
+                android:layout_toLeftOf="@id/fl_hy_1"
                 android:layout_marginRight="@dimen/px_70"
                 android:orientation="vertical">
                 <com.ybg.app.meishow.view.CircleImageView
-                    android:id="@+id/zh_2_pic"
+                    android:id="@+id/hy_2_pic"
                     android:layout_width="@dimen/px_90"
                     android:layout_height="@dimen/px_90"
                     android:layout_gravity="center"
@@ -67,14 +67,14 @@
                     android:src="@mipmap/bang2"/>
             </FrameLayout>
             <FrameLayout
-                android:id="@+id/fl_zh_3"
+                android:id="@+id/fl_hy_3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@id/fl_zh_1"
+                android:layout_toRightOf="@id/fl_hy_1"
                 android:layout_marginLeft="@dimen/px_70"
                 android:orientation="vertical">
                 <com.ybg.app.meishow.view.CircleImageView
-                    android:id="@+id/zh_3_pic"
+                    android:id="@+id/hy_3_pic"
                     android:layout_width="@dimen/px_90"
                     android:layout_height="@dimen/px_90"
                     android:layout_gravity="center"
@@ -99,169 +99,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="美力榜"
+            android:text="人气榜"
             android:textSize="@dimen/px_text_30"/>
-        <!--美力榜-->
-        <RelativeLayout
-            android:id="@+id/rl_ml_bang"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_198"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:background="@mipmap/bang_bg">
-            <FrameLayout
-                android:id="@+id/fl_ml_1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:orientation="vertical">
-                <com.ybg.app.meishow.view.CircleImageView
-                    android:id="@+id/ml_1_pic"
-                    android:layout_width="@dimen/px_112"
-                    android:layout_height="@dimen/px_112"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/default_avatar"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@mipmap/bang1"/>
-            </FrameLayout>
-            <FrameLayout
-                android:id="@+id/fl_ml_2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toLeftOf="@id/fl_ml_1"
-                android:layout_marginRight="@dimen/px_70"
-                android:orientation="vertical">
-                <com.ybg.app.meishow.view.CircleImageView
-                    android:id="@+id/ml_2_pic"
-                    android:layout_width="@dimen/px_90"
-                    android:layout_height="@dimen/px_90"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/default_avatar"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/px_20"
-                    android:src="@mipmap/bang2"/>
-            </FrameLayout>
-            <FrameLayout
-                android:id="@+id/fl_ml_3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/fl_ml_1"
-                android:layout_marginLeft="@dimen/px_70"
-                android:orientation="vertical">
-                <com.ybg.app.meishow.view.CircleImageView
-                    android:id="@+id/ml_3_pic"
-                    android:layout_width="@dimen/px_90"
-                    android:layout_height="@dimen/px_90"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/default_avatar"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/px_20"
-                    android:src="@mipmap/bang3"/>
-            </FrameLayout>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_arrow_right"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/px_28"/>
-        </RelativeLayout>
-        <!--第三榜单-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="活力新人王"
-            android:textSize="@dimen/px_text_30"/>
-        <!--活力新人王-->
-        <RelativeLayout
-            android:id="@+id/rl_hl_bang"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px_198"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:background="@mipmap/bang_bg">
-            <FrameLayout
-                android:id="@+id/fl_hl_1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:orientation="vertical">
-                <com.ybg.app.meishow.view.CircleImageView
-                    android:id="@+id/hl_1_pic"
-                    android:layout_width="@dimen/px_112"
-                    android:layout_height="@dimen/px_112"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/default_avatar"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@mipmap/bang1"/>
-            </FrameLayout>
-            <FrameLayout
-                android:id="@+id/fl_hl_2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toLeftOf="@id/fl_hl_1"
-                android:layout_marginRight="@dimen/px_70"
-                android:orientation="vertical">
-                <com.ybg.app.meishow.view.CircleImageView
-                    android:id="@+id/hl_2_pic"
-                    android:layout_width="@dimen/px_90"
-                    android:layout_height="@dimen/px_90"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/default_avatar"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/px_20"
-                    android:src="@mipmap/bang2"/>
-            </FrameLayout>
-            <FrameLayout
-                android:id="@+id/fl_hl_3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/fl_hl_1"
-                android:layout_marginLeft="@dimen/px_70"
-                android:orientation="vertical">
-                <com.ybg.app.meishow.view.CircleImageView
-                    android:id="@+id/hl_3_pic"
-                    android:layout_width="@dimen/px_90"
-                    android:layout_height="@dimen/px_90"
-                    android:layout_gravity="center"
-                    android:src="@mipmap/default_avatar"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/px_20"
-                    android:src="@mipmap/bang3"/>
-            </FrameLayout>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_arrow_right"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/px_28"/>
-        </RelativeLayout>
-        <!--第四榜单-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="人气新人王"
-            android:textSize="@dimen/px_text_30"/>
-        <!--人气新人王-->
+        <!--人气榜-->
         <RelativeLayout
             android:id="@+id/rl_rq_bang"
             android:layout_width="match_parent"
@@ -334,7 +174,87 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/px_28"/>
         </RelativeLayout>
-        <!--第五榜单-->
+        <!--第三榜单-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="收入榜"
+            android:textSize="@dimen/px_text_30"/>
+        <!--收入榜-->
+        <RelativeLayout
+            android:id="@+id/rl_sr_bang"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_198"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@mipmap/bang_bg">
+            <FrameLayout
+                android:id="@+id/fl_sr_1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+                <com.ybg.app.meishow.view.CircleImageView
+                    android:id="@+id/sr_1_pic"
+                    android:layout_width="@dimen/px_112"
+                    android:layout_height="@dimen/px_112"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/default_avatar"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/bang1"/>
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/fl_sr_2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/fl_sr_1"
+                android:layout_marginRight="@dimen/px_70"
+                android:orientation="vertical">
+                <com.ybg.app.meishow.view.CircleImageView
+                    android:id="@+id/sr_2_pic"
+                    android:layout_width="@dimen/px_90"
+                    android:layout_height="@dimen/px_90"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/default_avatar"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/px_20"
+                    android:src="@mipmap/bang2"/>
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/fl_sr_3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/fl_sr_1"
+                android:layout_marginLeft="@dimen/px_70"
+                android:orientation="vertical">
+                <com.ybg.app.meishow.view.CircleImageView
+                    android:id="@+id/sr_3_pic"
+                    android:layout_width="@dimen/px_90"
+                    android:layout_height="@dimen/px_90"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/default_avatar"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/px_20"
+                    android:src="@mipmap/bang3"/>
+            </FrameLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_arrow_right"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/px_28"/>
+        </RelativeLayout>
+        <!--第四榜单-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

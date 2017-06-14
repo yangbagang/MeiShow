@@ -256,7 +256,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         utils.loadBitmap(userImage, R.mipmap.default_avatar);
 
         userName.text = "游客"
-        userLevel.text = "悦美御秀"
+        userLevel.text = "美秀"
         showApplication.ymCode = ""
     }
 

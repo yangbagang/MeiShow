@@ -29,78 +29,34 @@
         android:src="@mipmap/default_avatar"
         android:layout_marginLeft="@dimen/px_30"/>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_pm_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="@dimen/px_16">
-        <TextView
-            android:id="@+id/tv_pm_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="孙行者"
-            android:textSize="@dimen/px_text_30"
-            android:textColor="#545866"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_score_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="美力值"
-                android:textSize="@dimen/px_text_24"
-                android:textColor="#545866"/>
-            <TextView
-                android:id="@+id/tv_pm_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="123456"
-                android:textSize="@dimen/px_text_24"
-                android:textColor="#de4942"/>
-        </LinearLayout>
-    </LinearLayout>
+        android:layout_marginLeft="@dimen/px_16"
+        android:text="孙行者"
+        android:textSize="@dimen/px_text_30"
+        android:textColor="#545866"/>
 
     <View
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_score_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginRight="@dimen/px_20">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="最强蜜爱"
-            android:layout_gravity="center_horizontal"
-            android:textSize="@dimen/px_text_30"
-            android:textColor="#545866"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/iv_mi_0"
-                android:layout_width="@dimen/px_44"
-                android:layout_height="@dimen/px_44"
-                android:src="@mipmap/default_avatar"
-                android:scaleType="fitXY"/>
-            <ImageView
-                android:id="@+id/iv_mi_1"
-                android:layout_width="@dimen/px_44"
-                android:layout_height="@dimen/px_44"
-                android:layout_marginLeft="@dimen/px_10"
-                android:src="@mipmap/default_avatar"
-                android:scaleType="fitXY"/>
-            <ImageView
-                android:id="@+id/iv_mi_2"
-                android:layout_width="@dimen/px_44"
-                android:layout_height="@dimen/px_44"
-                android:layout_marginLeft="@dimen/px_10"
-                android:src="@mipmap/default_avatar"
-                android:scaleType="fitXY"/>
-        </LinearLayout>
-    </LinearLayout>
+        android:text="美力值"
+        android:textSize="@dimen/px_text_24"
+        android:textColor="#545866"/>
+    <TextView
+        android:id="@+id/tv_pm_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/px_16"
+        android:text="123456"
+        android:textSize="@dimen/px_text_24"
+        android:textColor="#de4942"/>
+
 </LinearLayout>

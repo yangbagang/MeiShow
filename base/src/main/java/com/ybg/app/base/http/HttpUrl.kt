@@ -69,12 +69,16 @@ object HttpUrl {
     private val FOLLOW_FOLLOW = "/follow/follow"
 
     //悦美榜
-    val ruiMeiBang: String
-        get() = ROOT_URL + "/meiLiHistory/meiliList"
+    val huoYueBang: String
+        get() = ROOT_URL + "/showBang/huoYueList"
     val renQiBang: String
-        get() = ROOT_URL + "/meiLiHistory/renqiList"
-    val huoLiBang: String
-        get() = ROOT_URL + "/meiLiHistory/huoliList"
+        get() = ROOT_URL + "/showBang/renQiList"
+    val shouRuBang: String
+        get() = ROOT_URL + "/showBang/shouRuList"
+    val haoQiBang: String
+        get() = ROOT_URL + "/showBang/haoQiList"
+
+
     val miAiBang: String
         get() = ROOT_URL + "/meiLiHistory/miAiList"
 

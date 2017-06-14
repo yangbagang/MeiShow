@@ -22,7 +22,7 @@ import java.util.*
  */
 abstract class BangBaseFragment: BaseFragment() {
 
-    private val titles = arrayOf("美力值", "美力值", "活力值", "人气值", "亲善值")
+    private val titles = arrayOf("发布数量", "查看次数", "收获美币", "贡献美币")
     open var type = 1
     open var beginTime = "2016-01-01"
     open var endTime = "2999-12-31"
@@ -64,12 +64,8 @@ abstract class BangBaseFragment: BaseFragment() {
         mListView.adapter = mAdapter
     }
 
-    fun loadRuiMeiBang() {
-        showToast("正在开发中，更多功能敬请期待...")
-    }
-
-    fun loadMeiLiBang() {
-        SendRequest.getRuiMeiBang(mContext!!, beginTime, endTime, pageNum, pageSize, object :
+    fun loadShouRuBang() {
+        SendRequest.getShouRuBang(mContext!!, beginTime, endTime, pageNum, pageSize, object :
                 OkCallback<String>(OkStringParser()){
 
             override fun onSuccess(code: Int, response: String) {
@@ -94,8 +90,8 @@ abstract class BangBaseFragment: BaseFragment() {
         })
     }
 
-    fun loadHuoLiBang() {
-        SendRequest.getHuoLiBang(mContext!!, beginTime, endTime, pageNum, pageSize, object :
+    fun loadHuoYueBang() {
+        SendRequest.getHuoYueBang(mContext!!, beginTime, endTime, pageNum, pageSize, object :
                 OkCallback<String>(OkStringParser()){
 
             override fun onSuccess(code: Int, response: String) {
@@ -147,7 +143,29 @@ abstract class BangBaseFragment: BaseFragment() {
     }
 
     fun loadHaoQiBang() {
-        showToast("正在开发中，更多功能敬请期待...")
+        SendRequest.getHaoQiBang(mContext!!, beginTime, endTime, pageNum, pageSize, object :
+                OkCallback<String>(OkStringParser()){
+
+            override fun onSuccess(code: Int, response: String) {
+                if (pageNum == 1) {
+                    val message = mHandler.obtainMessage()
+                    message.what = TYPE_REFRESH
+                    message.obj = response
+                    mHandler.sendMessage(message)
+                } else {
+                    val message = mHandler.obtainMessage()
+                    message.what = TYPE_LOADMORE
+                    message.obj = response
+                    mHandler.sendMessage(message)
+                }
+                mRefreshLayout.endRefreshing()
+            }
+
+            override fun onFailure(e: Throwable) {
+                mRefreshLayout.endRefreshing()
+            }
+
+        })
     }
 
     private val mHandler = object : Handler() {
@@ -203,15 +221,10 @@ abstract class BangBaseFragment: BaseFragment() {
 
         private fun loadData() {
             when(type) {
-                0 -> {
-                    loadMeiLiBang()
-                }
-                1 -> loadMeiLiBang()
-                2 -> loadHuoLiBang()
-                3 -> loadRenQiBang()
-                4 -> {
-                    loadMeiLiBang()
-                }
+                0 -> loadHuoYueBang()
+                1 -> loadRenQiBang()
+                2 -> loadShouRuBang()
+                3 -> loadHaoQiBang()
             }
         }
     }
