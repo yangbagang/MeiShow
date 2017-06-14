@@ -40,10 +40,11 @@ abstract class PostShowActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ShowPriceActivity.SHOW_PRICE_REQUEST_CODE
-                && resultCode == ShowPriceActivity.SHOW_PRICE_REQUEST_CODE) {
+                && resultCode == ShowPriceActivity.SHOW_PRICE_RESULT_CODE) {
             if (data != null) {
                 price = data.getIntExtra(ShowPriceActivity.SHOW_PRICE, 0)
                 tv_show_price.text = String.format("%d秀币", price)
+                tv_show_price.visibility = View.VISIBLE
             }
         }
     }

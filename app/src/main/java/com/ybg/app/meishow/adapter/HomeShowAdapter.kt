@@ -87,6 +87,7 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
         if (!TextUtils.isEmpty(mList!![position].createTime)) {
             viewHolder.tv_time!!.text = DateUtil.getTimeInterval(mList!![position].createTime!!)
         }
+        viewHolder.tv_price!!.text = "${mList!![position].price}"
         /**用户发布内容 */
         val str = mList!![position].title
         viewHolder.tv_content!!.text = str
@@ -95,6 +96,7 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
         viewHolder.iv_parise!!.setOnClickListener(zanOnClickListener)
         viewHolder.tv_comment!!.text = "${mList!![position].pingNum}"
         viewHolder.tv_parise!!.text = "${mList!![position].zanNum}"
+        viewHolder.tv_view!!.text = "${mList!![position].viewNum}"
         return convertView!!
     }
 
@@ -117,6 +119,7 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
 
             override fun onFailure(e: Throwable) {
                 //ToastUtil.show("获取用户信息失败。")
+                e.printStackTrace()
             }
         })
     }
@@ -175,12 +178,14 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
         viewHolder.iv_user_photo = convertView.findViewById(R.id.iv_user_logo) as CircleImageView
         viewHolder.tv_username = convertView.findViewById(R.id.tv_user_name) as TextView
         viewHolder.tv_time = convertView.findViewById(R.id.tv_time) as TextView
+        viewHolder.tv_price = convertView.findViewById(R.id.tv_price_num) as TextView
         viewHolder.btn_care = convertView.findViewById(R.id.btn_care) as Button
         //用户发布文字
         viewHolder.tv_content = convertView.findViewById(R.id.tv_show_user_feel) as TextView
         //用户操作
         viewHolder.tv_comment = convertView.findViewById(R.id.tv_show_comment) as TextView
         viewHolder.tv_parise = convertView.findViewById(R.id.tv_show_praise) as TextView
+        viewHolder.tv_view = convertView.findViewById(R.id.tv_show_view) as TextView
         viewHolder.iv_comment = convertView.findViewById(R.id.iv_show_comment) as ImageView
         viewHolder.iv_parise = convertView.findViewById(R.id.iv_show_praise) as ImageView
         convertView.tag = viewHolder
@@ -245,10 +250,12 @@ class HomeShowAdapter(private var mContext: Activity) : BaseAdapter() {
         internal var iv_user_photo: CircleImageView? = null//用户头像
         internal var tv_username: TextView? = null//用户昵称
         internal var tv_time: TextView? = null//用户发布时间
+        internal var tv_price: TextView? = null//秀币
         internal var btn_care: Button? = null//关注
         internal var tv_content: TextView? = null//发布文字内容
         internal var tv_comment: TextView? = null//评论数
         internal var tv_parise: TextView? = null//点赞数
+        internal var tv_view: TextView? = null//查看数
         internal var iv_comment: ImageView? = null//评论图标
         internal var iv_parise: ImageView? = null//点赞图标
     }

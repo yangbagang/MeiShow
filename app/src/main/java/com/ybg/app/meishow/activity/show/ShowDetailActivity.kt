@@ -15,7 +15,6 @@ import android.widget.TextView
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.base.bean.*
 import com.ybg.app.base.constants.IntentExtra
 import com.ybg.app.base.decoration.SpaceItemDecoration
@@ -24,10 +23,15 @@ import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback
 import com.ybg.app.base.http.parser.OkStringParser
 import com.ybg.app.base.picasso.Picasso
-import com.ybg.app.base.utils.*
+import com.ybg.app.base.utils.DateUtil
+import com.ybg.app.base.utils.NetworkType
+import com.ybg.app.base.utils.NetworkUtil
+import com.ybg.app.base.utils.ScreenUtils
 import com.ybg.app.meishow.R
+import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.activity.user.UserCenterActivity
 import com.ybg.app.meishow.adapter.PingItemAdapter
+import com.ybg.app.meishow.app.ShowApplication
 import com.ybg.app.meishow.utils.ImageLoaderUtils
 import com.ybg.app.meishow.view.BannerFrame
 import com.ybg.app.meishow.view.CircleImageView
@@ -46,8 +50,6 @@ class ShowDetailActivity : BaseActivity() {
     //UI组件
     private lateinit var authorAvatar: CircleImageView
     private lateinit var authorNickName: TextView
-    private lateinit var authorLevel: ImageView
-    private lateinit var authorMeiLi: TextView
     private lateinit var postTime: TextView
     private lateinit var authorBtn: Button
     private lateinit var showContent: TextView
@@ -70,11 +72,9 @@ class ShowDetailActivity : BaseActivity() {
     override fun setUpView() {
         authorAvatar = findViewById(R.id.iv_user_logo) as CircleImageView
         authorNickName = findViewById(R.id.tv_user_name) as TextView
-        authorLevel = findViewById(R.id.iv_level_img) as ImageView
-        authorMeiLi = findViewById(R.id.tv_meilizhi) as TextView
         postTime = findViewById(R.id.tv_time) as TextView
         authorBtn = findViewById(R.id.btn_chat) as Button
-        authorBtn.text = "约会"
+        authorBtn.text = "关注"
         showContent = findViewById(R.id.tv_fu_content) as TextView
         zanLayout = findViewById(R.id.ll_user_like_list) as LinearLayout
         zanNum = findViewById(R.id.tv_like_num) as TextView
@@ -83,7 +83,7 @@ class ShowDetailActivity : BaseActivity() {
 
         w = ScreenUtils.getScreenWidth(mContext!!)
 
-        setCustomTitle("查看悦秀")
+        setCustomTitle("查看美秀")
     }
 
     override fun init() {
@@ -206,7 +206,6 @@ class ShowDetailActivity : BaseActivity() {
 
     private fun loadInfo(userBase: UserBase) {
         /**用户信息 */
-        authorMeiLi.text = String.format("美力值 + %d", userBase.ml)
         if (TextUtils.isEmpty(userBase.nickName)) {
             authorNickName.text = userBase.ymCode
         } else {
@@ -218,6 +217,29 @@ class ShowDetailActivity : BaseActivity() {
         } else {
             Picasso.with(mContext).load(HttpUrl.getImageUrl(userBase.avatar)).resize(100, 100).centerCrop()
                     .into(authorAvatar)
+        }
+
+        if (userBase.flag == 1) {
+            authorBtn.setBackgroundResource(R.drawable.shape_bg_green_edge)
+            val img_focus = mContext!!.resources.getDrawable(R.mipmap.ic_has_focus)
+            // 调用setCompoundDrawables时，必须调用Drawable.setBounds()方法,否则图片不显示
+            img_focus.setBounds(0, 0, img_focus.minimumWidth, img_focus.minimumHeight)
+            authorBtn.setCompoundDrawables(img_focus, null, null, null) //设置左图标
+            authorBtn.text = "已关注"
+            authorBtn.setTextColor(0Xff7dcf2c.toInt())
+            authorBtn.isEnabled = false
+            /**已经关注之后不能点击 */
+        } else {
+            authorBtn.setBackgroundResource(R.drawable.shape_btn_login)
+            val img_add = mContext!!.resources.getDrawable(R.mipmap.ic_add_focus)
+            img_add.setBounds(0, 0, img_add.minimumWidth, img_add.minimumHeight)
+            authorBtn.setCompoundDrawables(img_add, null, null, null) //设置左图标
+            authorBtn.text = "关注"
+            authorBtn.setTextColor(0xffffffff.toInt())
+            authorBtn.isEnabled = true
+            /**未关注可能点击 */
+            val careOnClickListener = BtnCareOnClickListener(userBase.id)
+            authorBtn.setOnClickListener(careOnClickListener)
         }
     }
 
@@ -261,6 +283,13 @@ class ShowDetailActivity : BaseActivity() {
                             val pics = files.map { it.file }
                             picFrame.setImageResources(pics)
                             picFrame.startPlay()
+
+                            picFrame.setFullScreenAction {
+                                println("1111111")
+                                val picList = ArrayList<String>()
+                                picList.addAll(pics)
+                                PhotoPlayerActivity.start(mContext!!, picList)
+                            }
                         }
                     } else if (show.type == 2) {
                         if (files.isNotEmpty()) {
@@ -440,6 +469,43 @@ class ShowDetailActivity : BaseActivity() {
         override fun onClick(v: View) {
             if (user != null) {
                 UserCenterActivity.start(mContext!!, user!!)
+            }
+        }
+    }
+
+    /**
+     * 关注点击事件
+     */
+    private inner class BtnCareOnClickListener(var userId: Long) : View.OnClickListener {
+
+        override fun onClick(v: View) {
+            if (!ShowApplication.instance!!.hasLogin()) {
+                showToast("请登录后再关注")
+            } else {
+                SendRequest.followUser(mContext!!, ShowApplication.instance!!.token, userId,
+                        object : OkCallback<String>(OkStringParser()) {
+                            override fun onSuccess(code: Int, response: String) {
+                                val resultBean = JSonResultBean.fromJSON(response)
+                                if (resultBean != null && resultBean.isSuccess) {
+                                    authorBtn.setBackgroundResource(R.drawable.shape_bg_green_edge)
+                                    val img_focus = mContext!!.resources.getDrawable(R.mipmap.ic_has_focus)
+                                    // 调用setCompoundDrawables时，必须调用Drawable.setBounds()方法,否则图片不显示
+                                    img_focus.setBounds(0, 0, img_focus.minimumWidth, img_focus.minimumHeight)
+                                    authorBtn.setCompoundDrawables(img_focus, null, null, null) //设置左图标
+                                    authorBtn.text = "已关注"
+                                    authorBtn.setTextColor(0Xff7dcf2c.toInt())
+                                    authorBtn.isEnabled = false
+                                } else {
+                                    resultBean?.let {
+                                        showToast(resultBean.message)
+                                    }
+                                }
+                            }
+
+                            override fun onFailure(e: Throwable) {
+                                showToast("关注失败")
+                            }
+                        })
             }
         }
     }

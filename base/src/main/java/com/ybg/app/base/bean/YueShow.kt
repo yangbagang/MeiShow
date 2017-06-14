@@ -15,7 +15,7 @@ class YueShow : Serializable {
     var updateTime: String? = null//结束时间
     var pingNum: Int = 0//评论次数
     var zanNum: Int = 0//赞次数
-    var shareNum: Int = 0//分享次数
+    var viewNum: Int = 0//分享次数
     var type: Int = 1//1图片2视频3直播
     var fileNum: Int = 1//附带文件数量
     var flag: Int = 1//是否有效
@@ -30,7 +30,7 @@ class YueShow : Serializable {
                 ", updateTime=" + updateTime +
                 ", pingNum=" + pingNum +
                 ", zanNum=" + zanNum +
-                ", shareNum=" + shareNum +
+                ", shareNum=" + viewNum +
                 '}'
     }
 

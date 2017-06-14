@@ -38,6 +38,7 @@ class BannerFrame @JvmOverloads constructor(context: Context, attrs: AttributeSe
     private var imageViewList: MutableList<BannerFrameItem> = ArrayList<BannerFrameItem>()
     private lateinit var viewIndex: TextView
     private lateinit var mViewPager: ViewPager
+    private lateinit var viewFull: TextView
     private var currentItem = 0
     private var scheduledExecutorService: ScheduledExecutorService? = null
     private var w = 0
@@ -59,6 +60,7 @@ class BannerFrame @JvmOverloads constructor(context: Context, attrs: AttributeSe
         LayoutInflater.from(context).inflate(R.layout.banner_layout, this, true)
         viewIndex = findViewById(R.id.view_index) as TextView
         mViewPager = findViewById(R.id.view_page) as ViewPager
+        viewFull = findViewById(R.id.tv_banner_full) as TextView
         mViewPager.setPageTransformer(true, ZoomOutPageTransformer())
         w = ScreenUtils.getScreenWidth(context)
     }
@@ -120,6 +122,20 @@ class BannerFrame @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
     fun stopPlay() {
         scheduledExecutorService!!.shutdown()
+    }
+
+    fun setFullScreenAction(action: ()->Unit) {
+        viewFull.setOnClickListener {
+            action()
+        }
+    }
+
+    fun enableFullScreen(flag: Boolean) {
+        if (flag) {
+            viewFull.visibility = View.VISIBLE
+        } else {
+            viewFull.visibility = View.GONE
+        }
     }
 
     private inner class MyPagerAdapter : PagerAdapter() {

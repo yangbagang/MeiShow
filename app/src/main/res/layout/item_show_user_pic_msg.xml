@@ -47,7 +47,6 @@
                     android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/px_30"
                     android:layout_marginTop="@dimen/px_28"
                     android:text=""
                     android:textColor="#bfc5ca"

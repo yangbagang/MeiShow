@@ -48,7 +48,8 @@
                 android:drawableTop="@drawable/selector_photo_stickers"
                 android:gravity="center"
                 android:padding="@dimen/px_10"
-                android:text="@string/photos_process_stickers" />
+                android:text="@string/photos_process_stickers"
+                android:visibility="invisible"/>
 
             <RadioButton
                 android:id="@+id/rb_process_text"
@@ -61,7 +62,8 @@
                 android:drawableTop="@drawable/selector_photo_text"
                 android:gravity="center"
                 android:padding="@dimen/px_10"
-                android:text="@string/photo_process_text" />
+                android:text="@string/photo_process_text"
+                android:visibility="invisible"/>
 
             <RadioButton
                 android:id="@+id/rb_process_music"
@@ -74,7 +76,8 @@
                 android:drawableTop="@drawable/selector_photo_music"
                 android:gravity="center"
                 android:padding="@dimen/px_10"
-                android:text="@string/photo_process_music" />
+                android:text="@string/photo_process_music"
+                android:visibility="invisible"/>
         </RadioGroup>
 
         <android.support.v7.widget.RecyclerView
