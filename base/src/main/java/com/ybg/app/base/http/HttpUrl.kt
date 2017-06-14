@@ -80,7 +80,10 @@ object HttpUrl {
 
 
     val miAiBang: String
-        get() = ROOT_URL + "/meiLiHistory/miAiList"
+        get() = ROOT_URL + "/showBang/miAiList"
+
+    val accountInfo: String
+        get() = ROOT_URL + "/userAccount/getInfo"
 
     //用户模块
     val userLoginUrl: String

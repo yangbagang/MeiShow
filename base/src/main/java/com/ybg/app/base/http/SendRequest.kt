@@ -370,7 +370,7 @@ object SendRequest {
                       callback: OkCallback<*>) {
         val params = mapOf<String, String>("beginTime" to beginTime, "endTime" to endTime,
                 "pageNum" to "$pageNum", "pageSize" to "$pageSize")
-        OkHttpProxy.post(HttpUrl.shouRuBang, tag, params, callback)
+        OkHttpProxy.post(HttpUrl.haoQiBang, tag, params, callback)
     }
 
     fun getMiAiBang(tag: Context, beginTime: String, endTime: String, pageNum: Int, pageSize: Int,
@@ -378,6 +378,11 @@ object SendRequest {
         val params = mapOf<String, String>("beginTime" to beginTime, "endTime" to endTime,
                 "pageNum" to "$pageNum", "pageSize" to "$pageSize", "userId" to "$userId")
         OkHttpProxy.post(HttpUrl.miAiBang, tag, params, callback)
+    }
+
+    fun getAccountInfo(tag: Context, token: String, callback: OkCallback<*>) {
+        val params = mapOf<String, String>("token" to token)
+        OkHttpProxy.post(HttpUrl.accountInfo, tag, params, callback)
     }
 
     /**

@@ -80,7 +80,7 @@ class UserCenterActivity : BaseActivity(), View.OnClickListener {
         mContext = this@UserCenterActivity
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val headerView = inflater.inflate(R.layout.item_user_list_head, null)
-        val floatView = inflater.inflate(R.layout.item_list_user_floating_bar2, null)
+        val floatView = inflater.inflate(R.layout.item_list_user_floating_bar2, lv_user, false)
         lv_user.addHeaderView(headerView)
         lv_user.addHeaderView(floatView)
         initHeadFloatView(floatView)
@@ -97,30 +97,11 @@ class UserCenterActivity : BaseActivity(), View.OnClickListener {
 
         if (intent != null) {
             userBase = intent.extras.getSerializable("userBase") as UserBase
-            checkFollowStatus()
         }
 
         mAdapter = HomeShowAdapter(mContext!!)
         mAdapter.setDataList(userShowList)
         lv_user.adapter = mAdapter
-    }
-
-    private fun checkFollowStatus() {
-        SendRequest.checkFollowStatus(mContext!!, mApplication.token, userBase!!.id,
-            object : OkCallback<String>(OkStringParser()){
-                override fun onSuccess(code: Int, response: String) {
-                    val jsonBean = JSonResultBean.fromJSON(response)
-                    if (jsonBean != null && jsonBean.isSuccess) {
-                        if (jsonBean.data == "1") {
-                            ll_user_tool.visibility = View.VISIBLE
-                        }
-                    }
-                }
-
-                override fun onFailure(e: Throwable) {
-
-                }
-            })
     }
 
     /**

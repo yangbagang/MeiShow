@@ -11,7 +11,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AbsListView
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.google.gson.Gson
@@ -20,15 +19,15 @@ import com.ybg.app.base.bean.BangItem
 import com.ybg.app.base.bean.JSonResultBean
 import com.ybg.app.base.bean.UserBase
 import com.ybg.app.base.bean.YueShow
+import com.ybg.app.base.http.HttpUrl
+import com.ybg.app.base.http.SendRequest
+import com.ybg.app.base.http.callback.OkCallback
+import com.ybg.app.base.http.parser.OkStringParser
 import com.ybg.app.base.utils.GsonUtil
 import com.ybg.app.meishow.R
 import com.ybg.app.meishow.activity.MainActivity
 import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.adapter.HomeShowAdapter
-import com.ybg.app.base.http.HttpUrl
-import com.ybg.app.base.http.SendRequest
-import com.ybg.app.base.http.callback.OkCallback
-import com.ybg.app.base.http.parser.OkStringParser
 import com.ybg.app.meishow.utils.ImageLoaderUtils
 import com.ybg.app.meishow.view.CircleImageView
 import com.ybg.app.meishow.view.bgarefresh.BGANormalRefreshViewHolder
@@ -44,12 +43,6 @@ class PersonCenterActivity : BaseActivity(), View.OnClickListener {
     private var vDynamic_float: View? = null
     private var tvDynamic_float: TextView? = null
     private var tvDynamicNum_float: TextView? = null
-    internal var vJoinData_float: View? = null
-    private var tvJoinData_float: TextView? = null
-    private var tvJoinDataNum_float: TextView? = null
-    private var vAchievement_float: View? = null
-    private var tvAchievement_float: TextView? = null
-    private var tvAchievementNum_float: TextView? = null
 
     private var rl_user_wall: RelativeLayout? = null//照片背景
     private var iv_user_logo: CircleImageView? = null//用户头像
@@ -66,11 +59,6 @@ class PersonCenterActivity : BaseActivity(), View.OnClickListener {
     private var tv_go_aimi: TextView? = null//跳转到密爱页面
 
     private var user: UserBase? = null
-
-    private val TV_COLOR_SELECT = 0xFF545866.toInt()
-    private val TV_COLOR_NORMAL = 0xFFAFB6BC.toInt()
-    private val VL_COLOR_SELECT = 0xFFF84F21.toInt()
-    private val VL_COLOR_NORMAL = 0xFFecedf3.toInt()
 
     private var hasMore = true
     private val pageSize = 5//每页取5条
@@ -90,17 +78,11 @@ class PersonCenterActivity : BaseActivity(), View.OnClickListener {
         vDynamic_float = findViewById(R.id.v_dynamic)
         tvDynamic_float = findViewById(R.id.tv_dynamic) as TextView
         tvDynamicNum_float = findViewById(R.id.tv_dynamic_num) as TextView
-        vJoinData_float = findViewById(R.id.v_join_data)
-        tvJoinData_float = findViewById(R.id.tv_join_data) as TextView
-        tvJoinDataNum_float = findViewById(R.id.tv_join_data_num) as TextView
-        vAchievement_float = findViewById(R.id.v_achievement)
-        tvAchievement_float = findViewById(R.id.tv_achievement) as TextView
-        tvAchievementNum_float = findViewById(R.id.tv_achievement_num) as TextView
 
         mContext = this@PersonCenterActivity
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val headerView = inflater.inflate(R.layout.item_user_list_head, null)
-        val floatView = inflater.inflate(R.layout.item_list_user_floating_bar, null)
+        val floatView = inflater.inflate(R.layout.item_list_user_floating_bar2, lv_user, false)
         lv_user.addHeaderView(headerView)
         lv_user.addHeaderView(floatView)
         initHeadFloatView(floatView)
@@ -200,20 +182,17 @@ class PersonCenterActivity : BaseActivity(), View.OnClickListener {
             //跳转到用户资料
             MyInformationActivity.start(mContext!!)
             return true
+        } else if (id == R.id.action_account) {
+            UserAccountActivity.start(mContext!!)
+            return true
         }
 
         return super.onOptionsItemSelected(item)
     }
 
     private var vDynamic: View? = null
-    private var vJoinData: View? = null
-    private var vAchievement: View? = null
     private var tvDynamic: TextView? = null
     private var tvDynamicNum: TextView? = null
-    private var tvJoinData: TextView? = null
-    private var tvJoinDataNum: TextView? = null
-    private var tvAchievementNum: TextView? = null
-    private var tvAchievement: TextView? = null
     /**
      * @param floatview
      */
@@ -222,35 +201,11 @@ class PersonCenterActivity : BaseActivity(), View.OnClickListener {
         vDynamic = floatview.findViewById(R.id.v_dynamic) as View
         tvDynamic = floatview.findViewById(R.id.tv_dynamic) as TextView
         tvDynamicNum = floatview.findViewById(R.id.tv_dynamic_num) as TextView
-        val rlDynamic = floatview.findViewById(R.id.rl_dynamic) as RelativeLayout
-        /*比赛*/
-        vJoinData = floatview.findViewById(R.id.v_join_data) as View
-        tvJoinData = floatview.findViewById(R.id.tv_join_data) as TextView
-        tvJoinDataNum = floatview.findViewById(R.id.tv_join_data_num) as TextView
-        val rlJoinData = floatview.findViewById(R.id.rl_join_data) as RelativeLayout
-        /*成就*/
-        vAchievement = floatview.findViewById(R.id.v_achievement) as View
-        tvAchievement = floatview.findViewById(R.id.tv_achievement) as TextView
-        tvAchievementNum = floatview.findViewById(R.id.tv_achievement_num) as TextView
-        val rlAchievement = floatview.findViewById(R.id.rl_achievement) as RelativeLayout
-        rlDynamic.setOnClickListener(this)
-        rlJoinData.setOnClickListener(this)
-        rlAchievement.setOnClickListener(this)
     }
 
     //@OnClick({R.id.rl_dynamic, R.id.rl_join_Data, R.id.rl_achievement})
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.rl_dynamic -> {
-                setResSelector(0)
-                fl_user_activity.visibility = View.VISIBLE
-                ll_user_fortune.visibility = View.GONE
-            }
-            R.id.rl_achievement -> {
-                setResSelector(2)
-                fl_user_activity.visibility = View.GONE
-                ll_user_fortune.visibility = View.VISIBLE
-            }
             R.id.tv_go_mi_ai -> {
                 if (user != null) {
                     MiAiActivity.start(mContext!!, user!!.id, user!!.nickName)
@@ -272,52 +227,6 @@ class PersonCenterActivity : BaseActivity(), View.OnClickListener {
             } else {
                 ll_floating!!.visibility = View.GONE
             }
-        }
-    }
-
-    /**
-     * @param number 0:选第一个 1：选第二个 2：选第三个
-     */
-    private fun setResSelector(number: Int) {
-        if (number == 0) {
-            tvDynamic!!.setTextColor(TV_COLOR_SELECT)
-            tvJoinData!!.setTextColor(TV_COLOR_NORMAL)
-            tvAchievement!!.setTextColor(TV_COLOR_NORMAL)
-            vDynamic!!.setBackgroundColor(VL_COLOR_SELECT)
-            vJoinData!!.setBackgroundColor(VL_COLOR_NORMAL)
-            vAchievement!!.setBackgroundColor(VL_COLOR_NORMAL)
-            tvDynamic_float!!.setTextColor(TV_COLOR_SELECT)
-            tvJoinData_float!!.setTextColor(TV_COLOR_NORMAL)
-            tvAchievement_float!!.setTextColor(TV_COLOR_NORMAL)
-            vDynamic_float!!.setBackgroundColor(VL_COLOR_SELECT)
-            vJoinData_float!!.setBackgroundColor(VL_COLOR_NORMAL)
-            vAchievement_float!!.setBackgroundColor(VL_COLOR_NORMAL)
-        } else if (number == 1) {
-            tvDynamic!!.setTextColor(TV_COLOR_NORMAL)
-            tvJoinData!!.setTextColor(TV_COLOR_SELECT)
-            tvAchievement!!.setTextColor(TV_COLOR_NORMAL)
-            vDynamic!!.setBackgroundColor(VL_COLOR_NORMAL)
-            vJoinData!!.setBackgroundColor(VL_COLOR_SELECT)
-            vAchievement!!.setBackgroundColor(VL_COLOR_NORMAL)
-            tvDynamic_float!!.setTextColor(TV_COLOR_NORMAL)
-            tvJoinData_float!!.setTextColor(TV_COLOR_SELECT)
-            tvAchievement_float!!.setTextColor(TV_COLOR_NORMAL)
-            vDynamic_float!!.setBackgroundColor(VL_COLOR_NORMAL)
-            vJoinData_float!!.setBackgroundColor(VL_COLOR_SELECT)
-            vAchievement_float!!.setBackgroundColor(VL_COLOR_NORMAL)
-        } else {
-            tvDynamic!!.setTextColor(TV_COLOR_NORMAL)
-            tvJoinData!!.setTextColor(TV_COLOR_NORMAL)
-            tvAchievement!!.setTextColor(TV_COLOR_SELECT)
-            vDynamic!!.setBackgroundColor(VL_COLOR_NORMAL)
-            vJoinData!!.setBackgroundColor(VL_COLOR_NORMAL)
-            vAchievement!!.setBackgroundColor(VL_COLOR_SELECT)
-            tvDynamic_float!!.setTextColor(TV_COLOR_NORMAL)
-            tvJoinData_float!!.setTextColor(TV_COLOR_NORMAL)
-            tvAchievement_float!!.setTextColor(TV_COLOR_SELECT)
-            vDynamic_float!!.setBackgroundColor(VL_COLOR_NORMAL)
-            vJoinData_float!!.setBackgroundColor(VL_COLOR_NORMAL)
-            vAchievement_float!!.setBackgroundColor(VL_COLOR_SELECT)
         }
     }
 

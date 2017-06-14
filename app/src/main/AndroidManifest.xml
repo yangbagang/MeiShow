@@ -150,9 +150,7 @@
         <activity
             android:name=".activity.show.PayNoticeActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.show.VideoPlayerActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".activity.show.VideoPlayerActivity" />
         <activity
             android:name=".activity.show.ShowPriceActivity"
             android:screenOrientation="portrait" />
@@ -187,7 +185,8 @@
         <activity
             android:name=".activity.gift.CardPaymentActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.show.PhotoPlayerActivity"></activity>
+        <activity android:name=".activity.show.PhotoPlayerActivity" />
+        <activity android:name=".activity.user.UserAccountActivity" />
     </application>
 
 </manifest>
