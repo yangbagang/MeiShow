@@ -12,7 +12,7 @@ object AppConstant {
     // 属性文件
     val PREFERENCE_FILE_NAME = "ybg_ms_preference.dat"
     // 调试标志
-    val isDebug = true
+    val isDebug = false
 
     // 外部存储设备的根路径
     private val ExternalStorageRootPath = EnvironmentStateUtil.externalStorageDirectory.path
