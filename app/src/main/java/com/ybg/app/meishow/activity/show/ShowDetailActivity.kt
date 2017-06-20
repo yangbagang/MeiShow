@@ -134,6 +134,11 @@ class ShowDetailActivity : BaseActivity() {
     }
 
     private fun checkPayStatus() {
+        if (!mApplication.hasLogin()) {
+            showToast("收费资源，请先登录后再观看。")
+            finish()
+            return
+        }
         SendRequest.checkPayStatus(mContext!!, mApplication.token, show.id!!, object : OkCallback<String>(OkStringParser()){
             override fun onSuccess(code: Int, response: String) {
                 val jsonBean = JSonResultBean.fromJSON(response)
