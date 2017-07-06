@@ -62,7 +62,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(setContentViewId())
+        val layoutId = setContentViewId()
+        if (layoutId > 0) {
+            setContentView(layoutId)
+        }
         mContext = this
         mEventBus = EventBus.getDefault()
         mEventBus!!.register(this)
