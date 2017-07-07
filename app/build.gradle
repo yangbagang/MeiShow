@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 25
@@ -52,6 +53,10 @@ android {
     dataBinding {
         enabled = true
     }
+
+    kapt {
+        generateStubs = true
+    }
 }
 
 dependencies {
@@ -74,6 +79,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile 'com.qiniu.pili:pili-android-qos:0.8.20'
+    kapt 'com.android.databinding:compiler:2.3.3'
 }
 repositories {
     mavenCentral()
