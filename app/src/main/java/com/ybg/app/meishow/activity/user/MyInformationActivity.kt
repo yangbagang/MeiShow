@@ -15,14 +15,14 @@ import com.ybg.app.base.bean.SystemLabel
 import com.ybg.app.base.constants.AppConstant
 import com.ybg.app.base.constants.IntentExtra
 import com.ybg.app.base.http.HttpUrl
-import com.ybg.app.base.http.Model.Progress
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback
-import com.ybg.app.base.http.listener.UploadListener
+import com.ybg.app.base.http.callback.UploadCallback
 import com.ybg.app.base.http.parser.OkStringParser
 import com.ybg.app.base.utils.BitmapUtils
 import com.ybg.app.base.utils.DateUtil
 import com.ybg.app.meishow.R
+import com.ybg.app.meishow.activity.MainActivity
 import com.ybg.app.meishow.activity.base.BaseActivity
 import com.ybg.app.meishow.adapter.InterestGridViewAdapter
 import com.ybg.app.meishow.adapter.MyInfoAdapter
@@ -34,11 +34,7 @@ import com.ybg.app.meishow.view.gallery.MultiImageSelectorActivity
 import com.ybg.app.meishow.view.pickerview.OptionsPopupWindow
 import com.ybg.app.meishow.view.pickerview.TimePopupWindow
 import kotlinx.android.synthetic.main.activity_my_information.*
-import okhttp3.Call
-import okhttp3.Response
-import org.json.JSONObject
 import java.io.File
-import java.io.IOException
 import java.io.Serializable
 import java.util.*
 
@@ -196,7 +192,7 @@ class MyInformationActivity : BaseActivity() {
             adapter.notifyDataSetChanged()
         }
         SendRequest.getUserLabel(mContext!!, mApplication.token, object : OkCallback<String>
-        (OkStringParser()){
+        (OkStringParser()) {
             override fun onSuccess(code: Int, response: String) {
                 val jsonBean = JSonResultBean.fromJSON(response)
                 if (jsonBean != null && jsonBean.isSuccess) {
@@ -272,7 +268,7 @@ class MyInformationActivity : BaseActivity() {
 
     private fun saveAvatar(path: String) {
 
-        object : AsyncTask<String, String, String>(){
+        object : AsyncTask<String, String, String>() {
 
             override fun onPostExecute(result: String?) {
                 super.onPostExecute(result)
@@ -300,28 +296,13 @@ class MyInformationActivity : BaseActivity() {
     }
 
     private fun uploadAvatar(path: String) {
-        SendRequest.uploadPicFile(mContext!!, "avatar", File(path), object: UploadListener(){
-            override fun onResponse(call: Call?, response: Response?) {
-                response?.let { onSuccess(response) }
+        SendRequest.uploadPicFile(mContext!!, "avatar", File(path), object : UploadCallback() {
+            override fun onJsonFailure(message: String) {
+                showToast("上传头像失败")
             }
 
-            override fun onFailure(call: Call?, e: IOException?) {
-                e?.let { onFailure(it) }
-            }
-
-            override fun onSuccess(response: Response) {
-                val json = JSONObject(response.body().string())
-                mAvatar = json.getString("fid")
-            }
-
-            override fun onFailure(e: Exception) {
-                workInLoopThread {
-                    showToast("上传头像失败")
-                }
-            }
-
-            override fun onUIProgress(progress: Progress) {
-
+            override fun onJsonSuccess(fid: String) {
+                mAvatar = fid
             }
         })
     }
@@ -341,7 +322,7 @@ class MyInformationActivity : BaseActivity() {
         val city = place[1]
         SendRequest.updateUserInfo(mContext!!, mApplication.token, birthday, position,
                 bodyHigh, bodyWeight, cupSize, bust, waist, hips, province, city, object :
-                OkCallback<String>(OkStringParser()){
+                OkCallback<String>(OkStringParser()) {
             override fun onSuccess(code: Int, response: String) {
                 val jsonBean = JSonResultBean.fromJSON(response)
                 if (jsonBean != null && jsonBean.isSuccess) {
@@ -358,7 +339,7 @@ class MyInformationActivity : BaseActivity() {
 
     private fun updateUserBase() {
         SendRequest.updateUserBase(mContext!!, mApplication.token, strlist[1], mAvatar,
-                strlist[9], object : OkCallback<String>(OkStringParser()){
+                strlist[9], object : OkCallback<String>(OkStringParser()) {
             override fun onSuccess(code: Int, response: String) {
                 val jsonBean = JSonResultBean.fromJSON(response)
                 if (jsonBean != null && jsonBean.isSuccess) {
@@ -380,11 +361,12 @@ class MyInformationActivity : BaseActivity() {
     private fun updateUserLabel() {
         val labels = intlist.joinToString(",")
         SendRequest.updateUserLabel(mContext!!, mApplication.token, labels, object :
-                OkCallback<String>(OkStringParser()){
+                OkCallback<String>(OkStringParser()) {
             override fun onSuccess(code: Int, response: String) {
                 val jsonBean = JSonResultBean.fromJSON(response)
                 if (jsonBean != null && jsonBean.isSuccess) {
                     showToast("操作完成")
+                    MainActivity.instance?.loadUserInfo()
                 }
             }
 

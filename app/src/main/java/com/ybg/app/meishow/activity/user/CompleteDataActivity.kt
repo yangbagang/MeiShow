@@ -149,10 +149,14 @@ class CompleteDataActivity : BaseActivity() {
                 workInLoopThread {
                     btn_complete_register.loadingText = "头像上传成功，正在保存数据"
                 }
-                val json = JSONObject(response.body().string())
-                mAvatar = json.getString("fid")
-                path = ""
-                completeUserInfo()
+                val json = JSonResultBean.fromJSON(response.body().string())
+                if (json != null && json.isSuccess) {
+                    mAvatar = json.data
+                    path = ""
+                    completeUserInfo()
+                } else {
+                    json?.let { showToast(json.message) }
+                }
             }
 
             override fun onFailure(e: Exception) {

@@ -17,6 +17,7 @@ import com.ybg.app.base.constants.MessageEvent
 import com.ybg.app.base.http.Model.Progress
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback
+import com.ybg.app.base.http.callback.UploadCallback
 import com.ybg.app.base.http.listener.UploadListener
 import com.ybg.app.base.http.parser.OkStringParser
 import com.ybg.app.base.utils.*
@@ -186,38 +187,20 @@ class PhotoPostActivity : PostShowActivity() {
 
     private fun uploadThumbnail() {
         println("开始上传缩略图")
-        SendRequest.uploadPicFile(mContext!!, "show", File(mThumbnail), object : UploadListener(){
-            override fun onResponse(call: Call?, response: Response?) {
-                response?.let { onSuccess(response) }
-            }
-
-            override fun onFailure(call: Call?, e: IOException?) {
-                e?.let { onFailure(e) }
-            }
-
-            override fun onSuccess(response: Response) {
-                try {
-                    val json = JSONObject(response.body().string())
-                    thumbnailId = json.getString("fid")
-                    //开始上传图片，图片上传完成后再建美秀。
-                    println("上传缩略图成功")
-                    println("thumbnailId=$thumbnailId")
-                    uploadPics()
-                } catch(e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-
-            override fun onFailure(e: Exception) {
-                e.printStackTrace()
+        SendRequest.uploadPicFile(mContext!!, "show", File(mThumbnail), object : UploadCallback(){
+            override fun onJsonFailure(message: String) {
                 println("上传缩略图失败，mThumbnail=$mThumbnail")
                 workInLoopThread {
                     showToast("上传图片失败")
                 }
             }
 
-            override fun onUIProgress(progress: Progress) {
-
+            override fun onJsonSuccess(fid: String) {
+                thumbnailId = fid
+                //开始上传图片，图片上传完成后再建美秀。
+                println("上传缩略图成功")
+                println("thumbnailId=$thumbnailId")
+                uploadPics()
             }
         })
     }
@@ -235,34 +218,15 @@ class PhotoPostActivity : PostShowActivity() {
     private fun uploadPic(pic: String) {
         //val file = pic.substring(7)
         println("开始上传图片: $pic")
-        SendRequest.uploadPicFile(mContext!!, "show", File(pic), object : UploadListener(){
-            override fun onFailure(call: Call?, e: IOException?) {
-                e?.let { onFailure(e) }
+        SendRequest.uploadPicFile(mContext!!, "show", File(pic), object : UploadCallback(){
+            override fun onJsonSuccess(fid: String) {
+                mFiles.add(fid)
             }
 
-            override fun onResponse(call: Call?, response: Response?) {
-                response?.let { onSuccess(response) }
-            }
-
-            override fun onSuccess(response: Response) {
-                try {
-                    val json = JSONObject(response.body().string())
-                    val fileId = json.getString("fid")
-                    mFiles.add(fileId)
-                } catch(e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-
-            override fun onFailure(e: Exception) {
-                e.printStackTrace()
+            override fun onJsonFailure(message: String) {
                 workInLoopThread {
                     showToast("上传图片失败")
                 }
-            }
-
-            override fun onUIProgress(progress: Progress) {
-
             }
         })
     }

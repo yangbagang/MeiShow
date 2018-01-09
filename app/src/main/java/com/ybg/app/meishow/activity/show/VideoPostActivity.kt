@@ -11,6 +11,7 @@ import com.ybg.app.base.constants.MessageEvent
 import com.ybg.app.base.http.Model.Progress
 import com.ybg.app.base.http.SendRequest
 import com.ybg.app.base.http.callback.OkCallback
+import com.ybg.app.base.http.callback.UploadCallback
 import com.ybg.app.base.http.listener.UploadListener
 import com.ybg.app.base.http.parser.OkStringParser
 import com.ybg.app.base.utils.ToastUtil
@@ -137,59 +138,31 @@ class VideoPostActivity : PostShowActivity() {
 
         private fun uploadPic() {
             println("开始上传缩略图...")
-            SendRequest.uploadPicFile(mContext!!, "show", File(pic), object : UploadListener() {
-                override fun onFailure(call: Call?, e: IOException?) {
-                    e?.let { onFailure(e) }
-                }
-
-                override fun onResponse(call: Call?, response: Response?) {
-                    response?.let { onSuccess(response) }
-                }
-
-                override fun onSuccess(response: Response) {
+            SendRequest.uploadPicFile(mContext!!, "show", File(pic), object : UploadCallback() {
+                override fun onJsonSuccess(fid: String) {
                     println("上传缩略图成功...")
-                    val json = JSONObject(response.body().string())
-                    picId = json.getString("fid")
+                    picId = fid
                     isUploadPic = false
                     uploadVideo()
                 }
 
-                override fun onFailure(e: Exception) {
+                override fun onJsonFailure(message: String) {
                     println("上传缩略图失败...")
-                    e.printStackTrace()
-                }
-
-                override fun onUIProgress(progress: Progress) {
-
                 }
             })
         }
 
         private fun uploadVideo() {
             println("开始上传视频文件...")
-            SendRequest.uploadVideoFile(mContext!!, "show", File(video), object : UploadListener() {
-                override fun onFailure(call: Call?, e: IOException?) {
-                    e?.let { onFailure(e) }
-                }
-
-                override fun onResponse(call: Call?, response: Response?) {
-                    response?.let { onSuccess(response) }
-                }
-
-                override fun onSuccess(response: Response) {
-                    println("上传视频文件完成...")
-                    val json = JSONObject(response.body().string())
-                    videoId = json.getString("fid")
-                    isUploadVideo = false
-                }
-
-                override fun onFailure(e: Exception) {
+            SendRequest.uploadVideoFile(mContext!!, "show", File(video), object : UploadCallback() {
+                override fun onJsonFailure(message: String) {
                     println("上传视频文件失败...")
-                    e.printStackTrace()
                 }
 
-                override fun onUIProgress(progress: Progress) {
-
+                override fun onJsonSuccess(fid: String) {
+                    println("上传视频文件完成...")
+                    videoId = fid
+                    isUploadVideo = false
                 }
             })
         }

@@ -10,14 +10,14 @@ object HttpUrl {
     //开发服务器地址
     val API_HOST_DEBUG = "http://192.168.12.99:8080/mShow"
     //生产服务器地址
-    val API_HOST_PRODUCT = "http://139.224.186.241:8080/mShow"
+    val API_HOST_PRODUCT = "http://183.57.41.230/mShow"
     //上传
-    val FILE_SERVER_PIC_UPLOAD = "http://139.224.186.241:8080/fileserver/file/upload3"
-    val FILE_SERVER_VIDEO_UPLOAD = "http://139.224.186.241:8080/fileserver/file/upload"
+    val FILE_SERVER_PIC_UPLOAD = "http://183.57.41.230/fileserver/file/upload3"
+    val FILE_SERVER_VIDEO_UPLOAD = "http://183.57.41.230/fileserver/file/upload"
     //预览
-    val FILE_SERVER_PREVIEW = "http://139.224.186.241:8080/fileserver/file/preview"
+    val FILE_SERVER_PREVIEW = "http://183.57.41.230/fileserver/file/preview"
     //下载
-    val FILE_SERVER_DOWNLOAD = "http://139.224.186.241:8080/fileserver/file/download"
+    val FILE_SERVER_DOWNLOAD = "http://183.57.41.230/fileserver/file/download"
 
     val ROOT_URL = if (AppConstant.isDebug) API_HOST_DEBUG else API_HOST_PRODUCT
     //获取验证码
